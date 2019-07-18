@@ -9,9 +9,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 
 
-public class Test_connexion {
+public abstract class Test_connexion {
 	
-	WebDriver driver;
+	protected static WebDriver driver;
 	String b ="chrome";
 	String url ="http://localhost:8090/libreplan";
 	
@@ -25,7 +25,6 @@ public class Test_connexion {
 //	public void tearDown() {
 //		driver.close();
 //	}
-	
 	@Test
 	public void Connexion() {
 		PageConnexion pageConnexion = PageFactory.initElements(driver, PageConnexion.class);
@@ -33,4 +32,5 @@ public class Test_connexion {
 		pageConnexion.seConnecter(driver, "admin", "admin");
 	}
 
+	
 }
