@@ -12,28 +12,27 @@ public class Test_GUP_01 extends Test_connexion {
 	
 	
 	@Test
-	public void gestionDUnProfil() {
+	public void gestionDUnProfil() throws Exception {
 		
 		//ACCEDER A LA PAGE PROFILS LISTE
-		PageProfilsListe pageProfilsListe = PageFactory.initElements(driver, PageProfilsListe.class);
-		pageProfilsListe.mouseoverConfiguration(driver);
+		PageAccueil pageAccueil = PageFactory.initElements(driver, PageAccueil.class);
+		PageProfilsListe pageProfilsListe = pageAccueil.mouseoverConfiguration(driver);
 //		driver.get("http://localhost:8090/libreplan/profiles/profiles.zul");
 		
-		//INSERER UN PROFIL EN BASE DE DONNEES
-		
-		//VERIFIER LA PRESENCE DE LA COLONNE "NOM DE PROFIL"
-		pageProfilsListe.verifColonneNom();
-		
-		//VERIFIER LA PRESENCE DE LA COLONNE "ACTION"
-		pageProfilsListe.verifColonneActions();
+		//VERIFIER LA PRESENCE DES COLONNES "NOM DE PROFIL" ET "ACTIONS"
+		pageProfilsListe.verifColonnesNomActions();
 		
 		//VERIFIER LA PRESENCE DES ICONES "MODIFIER" ET "SUPPRIMER"
+		pageProfilsListe.verifIconesModifierSupprimer();
 		
 		//VERIFIER LA PRESENCE DU BOUTON "CREER"
 		pageProfilsListe.verifBoutonCreer();
 		
 		//CLIQUER SUR LE BOUTON "CREER"
 		PageCreerProfil pageCreerProfil = pageProfilsListe.cliquerBoutonCreer(driver);
+		
+		//VERIFIER LA PRESENCE DES ELEMENTS DE L'ONGLET "DONNEES DE PROFIL"
+		pageCreerProfil.verifDonneesDeProfil();
 		
 	}
 	
