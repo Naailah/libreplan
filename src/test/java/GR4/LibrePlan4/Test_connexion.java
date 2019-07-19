@@ -8,6 +8,8 @@ import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 
+import Configuration.PageProfilsListe;
+
 
 public abstract class Test_connexion {
 	
@@ -20,20 +22,19 @@ public abstract class Test_connexion {
 	public void setUp() {
 		driver = Outils.choisirNavigateur(b);
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		PageConnexion pageConnexion = PageFactory.initElements(driver, PageConnexion.class);
+		driver.get(url);
+		pageConnexion.seConnecter(driver, "admin", "admin");
 	}
-	
+//	@Test
+//	public void Connexion() {
+
+//	}
 //	@After
 //	public void tearDown() {
 //		driver.close();
 //	}
-	@Test
-	public void Connexion() {
-		PageConnexion pageConnexion = PageFactory.initElements(driver, PageConnexion.class);
-		driver.get(url);
-		pageConnexion.seConnecter(driver, "admin", "admin");
-		page_accueil = PageFactory.initElements(driver, PageAccueil.class);
-		
-	}
+
 
 	
 }

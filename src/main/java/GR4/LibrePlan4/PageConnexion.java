@@ -18,6 +18,8 @@ public class PageConnexion extends PageBandeau {
 	@FindBy (xpath="//input[@type='submit']")
 	private WebElement bouton_submit;
 	
+
+	
 	public PageConnexion() {
 		super();
 		

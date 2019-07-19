@@ -21,15 +21,15 @@ public abstract class PageBandeau {
 	@FindBy(xpath="//td[@class='migas_linea']")
 	private WebElement fil_arianne;
 	
+	@FindBy(xpath="//a/@href[contains(.,'company_s')]")
+	private WebElement vue_compagnie;
+	
 	public PageAccueil goPageAccueil(WebDriver driver) {
 		//driver.switchTo().frame(0);
-		//Actions actions = new Actions(driver);
-		//actions.moveToElement(onglet_calendrier).build().perform();	
+		Actions compagnie = new Actions(driver);
+		compagnie.moveToElement(onglet_calendrier).build().perform();	
 		//driver.switchTo().defaultContent();
-		
-		onglet_calendrier.click();
-		onglet_calendrier.click();
-		driver.findElement(By.xpath("//a/@href[contains(.,'company_s')]")).click();
+		vue_compagnie.click();
 		return PageFactory.initElements(driver, PageAccueil.class);
 	}
 	
