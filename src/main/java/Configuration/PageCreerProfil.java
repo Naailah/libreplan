@@ -22,7 +22,6 @@ public class PageCreerProfil extends PageBandeau{
 	@FindBy (xpath="//fieldset[substring(@id,5)='b5']//i[substring(@id,5)='e5']")
 	private WebElement menuDeroulant;
 	
-	
 	@FindBy (xpath="//fieldset[substring(@id,5)='b5']//td[@class='z-button-cm'][text()='Ajouter un rôle']")
 	private WebElement bouton_ajouterRole;
 

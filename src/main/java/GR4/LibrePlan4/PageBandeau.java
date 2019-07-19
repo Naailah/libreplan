@@ -50,7 +50,12 @@ public abstract class PageBandeau {
 	 * Permet de faire un mouseover sur l'onglet "Configuration"
 	 * @param driver
 	 */
-	
+	public PageProfilsListe mouseoverConfiguration(WebDriver driver) {
+		Actions moConfig = new Actions(driver);
+		moConfig.moveToElement(bouton_configuration).build().perform();
+		lien_profils.click();
+		return PageFactory.initElements(driver, PageProfilsListe.class);
+	}
 	
 	
 	
@@ -63,12 +68,7 @@ public abstract class PageBandeau {
     }
 	
 	
-	public PageProfilsListe mouseoverConfiguration(WebDriver driver) {
-		Actions moConfig = new Actions(driver);
-		moConfig.moveToElement(bouton_configuration).build().perform();
-		lien_profils.click();
-		return PageFactory.initElements(driver, PageProfilsListe.class);
-	}
+
 		
 	public PageAccueil goPageAccueil(WebDriver driver) {
 		//driver.switchTo().frame(0);
