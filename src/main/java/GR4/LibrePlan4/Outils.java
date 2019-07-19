@@ -31,7 +31,14 @@ public class Outils {
 	private static final String USER = "libreplan";
 	private static final String PASSWORD = "libreplan";
 	
-
+	public static void verifTableau(String listeColonneAttendu, List<WebElement> colonnes) {
+		String listeColonnesReel = new String();
+		for(WebElement colonne : colonnes) {
+			listeColonnesReel = listeColonnesReel+ " " +colonne.getText();
+		}
+		System.out.println(listeColonnesReel);
+		assertEquals(listeColonneAttendu, listeColonnesReel);
+	}
 	
 	private static IDataSet readDataSet(String filename) throws Exception {
 		return new FlatXmlDataSetBuilder().build(new File(filename));

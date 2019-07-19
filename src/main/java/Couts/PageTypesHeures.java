@@ -6,6 +6,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
+
+import GR4.LibrePlan4.Outils;
+
 import static org.junit.Assert.*;
 
 public class PageTypesHeures {
@@ -32,13 +35,14 @@ public class PageTypesHeures {
 		moCouts.moveToElement(bouton_couts).build().perform();
 //		driver.switchTo().frame(iframe_config);
 		lien_types_heures.click();
-		String listeColonnesAttendu ="CodeNom de typePrix par défautActivéActions";
-		String listeColonnesReel = new String();
-		for(WebElement colonne : tableau_type_heure) {
-			listeColonnesReel = listeColonnesReel+colonne.getText();
-		}
-		System.out.println(listeColonnesReel);
-		assertEquals(listeColonnesAttendu, listeColonnesReel);
+		String listeColonnesAttendu =" Code Nom de type Prix par défaut Activé Actions";
+		Outils.verifTableau(listeColonnesAttendu, tableau_type_heure);
+//		String listeColonnesReel = new String();
+//		for(WebElement colonne : tableau_type_heure) {
+//			listeColonnesReel = listeColonnesReel+colonne.getText();
+//		}
+//		System.out.println(listeColonnesReel);
+//		assertEquals(listeColonnesAttendu, listeColonnesReel);
 	}
 	public void clickBoutonCreer(WebDriver driver) {
 		bouton_creer_types_heures.click();
