@@ -13,7 +13,9 @@ public class Test_1 extends Test_connexion {
 	
 @Test
 public void clickAccueil() {
-	
+	PageAccueil page_accueil = PageFactory.initElements(driver, PageAccueil.class);
+	//page_accueil.syso();
+	page_accueil.goPageAccueil(driver);
 	
 }
 

@@ -26,11 +26,20 @@ import org.openqa.selenium.support.ui.Select;
 
 public class Outils {
 	
-	private static final String DRIVER = "com.mysql.jdbc.Driver";
-	private static final String JDBC_URL = "jdbc:mysql://localhost:3306/hotel";
-	private static final String USER = "username";
-	private static final String PASSWORD = "password";
-
+	private static final String DRIVER = "org.postgresql.Driver";
+	private static final String JDBC_URL = "jdbc:postgresql://localhost:5433/libreplan";
+	private static final String USER = "libreplan";
+	private static final String PASSWORD = "libreplan";
+	
+	public static void verifTableau(String listeColonneAttendu, List<WebElement> colonnes) {
+		String listeColonnesReel = new String();
+		for(WebElement colonne : colonnes) {
+			listeColonnesReel = listeColonnesReel+ " " +colonne.getText();
+		}
+		System.out.println(listeColonnesReel);
+		assertEquals(listeColonneAttendu, listeColonnesReel);
+	}
+	
 	private static IDataSet readDataSet(String filename) throws Exception {
 		return new FlatXmlDataSetBuilder().build(new File(filename));
 	}
