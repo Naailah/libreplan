@@ -13,7 +13,7 @@ public class Test_1 extends Test_connexion {
 	
 @Test
 public void clickAccueil() {
-	
+	page_accueil.goPageAccueil(driver);
 	
 }
 

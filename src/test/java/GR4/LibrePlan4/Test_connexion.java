@@ -14,6 +14,7 @@ public abstract class Test_connexion {
 	protected static WebDriver driver;
 	String b ="chrome";
 	String url ="http://localhost:8090/libreplan";
+	PageAccueil page_accueil;
 	
 	@Before
 	public void setUp() {
@@ -30,6 +31,8 @@ public abstract class Test_connexion {
 		PageConnexion pageConnexion = PageFactory.initElements(driver, PageConnexion.class);
 		driver.get(url);
 		pageConnexion.seConnecter(driver, "admin", "admin");
+		page_accueil = PageFactory.initElements(driver, PageAccueil.class);
+		
 	}
 
 	
