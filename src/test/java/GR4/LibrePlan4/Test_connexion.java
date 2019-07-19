@@ -21,6 +21,7 @@ public abstract class Test_connexion {
 	public void setUp() {
 		driver = Outils.choisirNavigateur(b);
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		driver.manage().window().maximize();
 		PageConnexion pageConnexion = PageFactory.initElements(driver, PageConnexion.class);
 		driver.get(url);
 		pageConnexion.seConnecter(driver, "admin", "admin");
