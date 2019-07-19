@@ -36,7 +36,14 @@ public class Outils {
 	}
 
 	public static void insertData(String path_to_file) throws Exception {
-		//IDataSet dataset = readDataSet(path_to_file);
+		IDataSet dataset = readDataSet(path_to_file);
+		IDatabaseTester databaseTester = new JdbcDatabaseTester(DRIVER, JDBC_URL, USER, PASSWORD);
+		databaseTester.setSetUpOperation(DatabaseOperation.CLEAN_INSERT);
+		databaseTester.setDataSet(dataset);
+		databaseTester.onSetup();
+	}
+		
+	public static void insertDataDateUpdate(String path_to_file) throws Exception {
 		IDataSet dataset = dateUpdate(path_to_file);
 		IDatabaseTester databaseTester = new JdbcDatabaseTester(DRIVER, JDBC_URL, USER, PASSWORD);
 		databaseTester.setSetUpOperation(DatabaseOperation.CLEAN_INSERT);
