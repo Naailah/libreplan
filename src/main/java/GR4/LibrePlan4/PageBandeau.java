@@ -12,16 +12,16 @@ public abstract class PageBandeau {
 	@FindBy(xpath="//button[contains(.,'Calendrier')]")
 	private WebElement onglet_calendrier;
 	
-	@FindBy(xpath="//button[contains(.,'Ressources')]")
+/*	@FindBy(xpath="//button[contains(.,'Ressources')]")
 	private WebElement onglet_ressources;
 	
 	@FindBy(xpath="//button[contains(.,'Coûts')]")
 	private WebElement onglet_couts;
 	
 	@FindBy(xpath="//td[@class='migas_linea']")
-	private WebElement fil_arianne;
+	private WebElement fil_arianne;*/
 	
-	@FindBy(xpath="//a/@href[contains(.,'company_s')]")
+	@FindBy(xpath="//a[contains(@href.,'company_s')]")
 	private WebElement vue_compagnie;
 	
 	public PageAccueil goPageAccueil(WebDriver driver) {
@@ -31,6 +31,10 @@ public abstract class PageBandeau {
 		//driver.switchTo().defaultContent();
 		vue_compagnie.click();
 		return PageFactory.initElements(driver, PageAccueil.class);
+	}
+	
+	public void syso() {
+		System.out.println("test");
 	}
 	
 	/*public PageRessources clickPageRessources(WebDriver driver) {
