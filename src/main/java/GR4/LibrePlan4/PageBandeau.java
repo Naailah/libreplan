@@ -8,6 +8,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import Configuration.PageProfilsListe;
+import Ressources.PageListedecalendriers;
 
 public abstract class PageBandeau {
 	
@@ -35,10 +36,33 @@ public abstract class PageBandeau {
 	@FindBy (xpath="//a[contains(@href,'profiles.zul')]")
 	private WebElement lien_profils;
 	
+	
+	// XPath de l'onglet "Ressources"
+	@FindBy(xpath = "//button[substring(@id,5)='r-b'][@class='z-menu-btn']")
+	private WebElement bouton_ressources;
+	
+	// XPath du lien "Calendriers" dans l'onglet "Ressources"
+	@FindBy(xpath = "//a[contains(@href,'calendars.zul')]")
+	private WebElement lien_calendriers;
+	
+	
 	/**
 	 * Permet de faire un mouseover sur l'onglet "Configuration"
 	 * @param driver
 	 */
+	
+	
+	
+	
+	// Méthode de cliquer sur "Ressources"
+	public PageListedecalendriers mouseoverRessources(WebDriver driver) {
+        Actions moRessources = new Actions(driver);
+        moRessources.moveToElement(bouton_ressources).build().perform();
+        lien_calendriers.click();    
+        return PageFactory.initElements(driver, PageListedecalendriers.class);
+    }
+	
+	
 	public PageProfilsListe mouseoverConfiguration(WebDriver driver) {
 		Actions moConfig = new Actions(driver);
 		moConfig.moveToElement(bouton_configuration).build().perform();
