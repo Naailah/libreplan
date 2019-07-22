@@ -70,7 +70,7 @@ public class PageCreerProfil extends PageBandeau{
 	private List<WebElement> ligne_lireProjets;
 	
 	@FindBy (xpath="//tr[td/div/span[contains(.,'Lire')]]//td//span[@title='Supprimer']")
-	private WebElement icone_suppr;
+	private WebElement icone_supprLire;
 	
 	@FindBy (xpath="//tr[td/div/span[contains(.,'Lire')]]//td//span[@title='Supprimer']/table[@class='z-button-over']")
 	private WebElement infobulle_suppr;
@@ -86,6 +86,10 @@ public class PageCreerProfil extends PageBandeau{
 	
 	@FindBy (xpath="//fieldset//div[substring(@id,8)='body']/table[@style='table-layout:fixed;']/tbody/tr[contains(@class, 'z-row')]")
 	private List<WebElement> liste_lignesTableau;
+	
+	@FindBy (xpath="//tr[td/div/span[contains(.,'Critère')]]//td//span[@title='Supprimer']")
+	private WebElement icone_supprCritere;
+	
 	
 	public PageCreerProfil() {
 		
@@ -131,12 +135,12 @@ public class PageCreerProfil extends PageBandeau{
 	}
 	
 	public void verifIconeSupprimerRole() {
-		icone_suppr.isDisplayed();
+		icone_supprLire.isDisplayed();
 	}
 	
 	public void verifInfobulle(WebDriver driver) {
 		Actions moPoubelle = new Actions(driver);
-		moPoubelle.moveToElement(icone_suppr).build().perform();
+		moPoubelle.moveToElement(icone_supprLire).build().perform();
 		assertTrue("[FAIL] L'infobulle ne s'affiche pas", infobulle_suppr.isDisplayed());
 	}
 	
@@ -152,9 +156,21 @@ public class PageCreerProfil extends PageBandeau{
 		Outils.verifTailleListe(liste_lignesTableau, 4);
 	}
 	
-
+	public void supprRoleCritere() {
+		icone_supprCritere.isDisplayed();
+		icone_supprCritere.click();
+	}
 	
+	public void verifSupprRoleCritere() throws Exception {
+		Thread.sleep(1000);
+//		System.out.println(ligne_critere.size());
+		assertTrue(ligne_critere.isEmpty());
+		Outils.verifTailleListe(liste_lignesTableau, 3);
+	}
 	
+	public void supprRoles() {
+		
+	}
 	
 	
 	

@@ -79,8 +79,14 @@ public class Test_GUP_01 extends Test_connexion {
 		//CLIQUER SUR LE BOUTON "AJOUTER UN RÔLE"
 		pageCreerProfil.cliquerAjouterRole();
 		
-		//VERIFIER LA TAILLE DU TABLEAU
+		//VERIFIER QU'IL N'Y A PAS DE DOUBLON
 		pageCreerProfil.verifPasDeDoublon();
+		
+		//SUPPRIMER LE RÔLE "CRITERE"
+		pageCreerProfil.supprRoleCritere();
+		
+		//VERIFIER LA SUPPRESSION DU RÔLE "CRITERE"
+		pageCreerProfil.verifSupprRoleCritere();
 		
 		
 		
