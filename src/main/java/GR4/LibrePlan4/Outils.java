@@ -1,6 +1,6 @@
 package GR4.LibrePlan4;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 import java.io.File;
 import java.sql.SQLException;
@@ -35,7 +35,8 @@ public class Outils {
 	public static void verifTableau(String listeColonneAttendu, List<WebElement> colonnes) {
 		String listeColonnesReel = new String();
 		for(WebElement colonne : colonnes) {
-			listeColonnesReel = listeColonnesReel+ " " +colonne.getText();
+			System.out.println(colonne.getText());
+			listeColonnesReel = listeColonnesReel + " " + colonne.getText();
 		}
 		System.out.println(listeColonnesReel);
 		assertEquals(listeColonneAttendu, listeColonnesReel);
@@ -115,14 +116,14 @@ public class Outils {
 		return -1;
 	}
 
-	public static WebElement getCellule(WebDriver driver, int row, int col){ 
-		  WebElement cellule = driver.findElement(By.xpath("//table/tbody/tr[@bgcolor='#FFFF88']["+row+"]/td["+col+"]/descendant::a"));
-		  return cellule;
-		}
-	
 	public static void renseignerChamp(WebElement we, String s) {
 		we.clear();
 		we.sendKeys(s);
+	}
+	
+	public static void selectOption(WebElement menu, String option) {
+		Select select = new Select(menu);
+		select.selectByValue(option);
 	}
 	
 	public static void copierColler(WebElement element_a_copier, WebElement element_a_coller) {
@@ -134,8 +135,7 @@ public class Outils {
 	public static void verificationTextWebElement(String expected, WebElement we) {
 		try{
 			assertEquals(expected, we.getText());
-		}
-		catch(Error e) {
+		}catch(Error e) {
 			System.out.println("[FAIL] verificationTextWebElement \n expected : "+expected+"\n real="+ we.getText());
 			throw e;
 		}
@@ -165,10 +165,21 @@ public class Outils {
 		}
 	}
 	
-	
-	public static void selectOptionFromMenu(WebElement menu,String option) {
-		Select select = new Select(menu);
-		select.selectByValue(option);
+	/**
+	 * Permet de sélectionner une option dans le menu déroulant de la page CreerProfil
+	 * @param driver
+	 * @param option
+	 * @param bouton_flecheMenuDeroulant
+	 */
+	public static void selectionnerOption_pageCreerProfil(WebDriver driver, String option, WebElement bouton_flecheMenuDeroulant) {
+		bouton_flecheMenuDeroulant.click();
+		WebElement selectOption = driver.findElement(By.xpath("//table[substring(@id,5)='e5-cave']//tr/td[@class='z-comboitem-text'][contains(.,'" + option + "')]"));
+		//System.out.println(selectOption.getText());
+		assertTrue("[FAIL] Pas la bonne sélection", selectOption.getText().contains(option));
+		selectOption.click();		
 	}
+
+	
+	
 	
 }

@@ -34,6 +34,18 @@ public class Test_GUP_01 extends Test_connexion {
 		//VERIFIER LA PRESENCE DES ELEMENTS DE L'ONGLET "DONNEES DE PROFIL"
 		pageCreerProfil.verifDonneesDeProfil();
 		
+		//SAISIR UNE VALEUR DANS LE CHAMPS "NOM"
+		pageCreerProfil.saisirNomProfil();
+		
+		//CHOISIR UN RÔLE DANS LE MENU DEROULANT
+		pageCreerProfil.selectionnerRole(driver, "Lire");
+		
+		//CLIQUER SUR LE BOUTON "AJOUTER UN RÔLE"
+		pageCreerProfil.cliquerAjouterRole();
+		
+		//VERIFIER L'AJOUT DU RÔLE
+		pageCreerProfil.verifAjoutDuRole();
+		
 	}
 	
 }
