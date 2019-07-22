@@ -90,6 +90,9 @@ public class PageCreerProfil extends PageBandeau{
 	@FindBy (xpath="//tr[td/div/span[contains(.,'Critère')]]//td//span[@title='Supprimer']")
 	private WebElement icone_supprCritere;
 	
+	@FindBy (xpath="//fieldset//span[@title='Supprimer'][@class='icono z-button']")
+	private List<WebElement> icones_suppr;
+	
 	
 	public PageCreerProfil() {
 		
@@ -168,8 +171,10 @@ public class PageCreerProfil extends PageBandeau{
 		Outils.verifTailleListe(liste_lignesTableau, 3);
 	}
 	
-	public void supprRoles() {
-		
+	public void supprRoles() throws Exception{
+		Outils.supprimerElementListe(icones_suppr, 0);
+
+
 	}
 	
 	

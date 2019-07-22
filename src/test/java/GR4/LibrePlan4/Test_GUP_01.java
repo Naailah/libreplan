@@ -88,8 +88,8 @@ public class Test_GUP_01 extends Test_connexion {
 		//VERIFIER LA SUPPRESSION DU RÔLE "CRITERE"
 		pageCreerProfil.verifSupprRoleCritere();
 		
-		
-		
+		//SUPPRIMER TOUS LES RÔLES
+		pageCreerProfil.supprRoles();
 	}
 	
 }

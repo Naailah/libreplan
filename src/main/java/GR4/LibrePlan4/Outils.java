@@ -223,5 +223,15 @@ public class Outils {
 			System.out.println(listSize);
 			assertTrue(taille == listSize);
 		}
+		
+		/**
+		 * Supprimer un élément d'une liste selon l'index
+		 * @param liste
+		 * @throws Exception
+		 */
+		public static void supprimerElementListe(List<WebElement> liste, int index) throws Exception{
+			liste.get(index).click();
+			Thread.sleep(1000);
+		}
 	
 }
