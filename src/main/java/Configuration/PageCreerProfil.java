@@ -8,6 +8,7 @@ import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
 
@@ -61,8 +62,17 @@ public class PageCreerProfil extends PageBandeau{
 	@FindBy (xpath="//table[substring(@id,5)='e5-cave']//tr[substring(@id,1,4)='qOwP']/td[@class='z-comboitem-text']")
 	private WebElement lien_optionsRole;
 	
-	@FindBy (xpath="//tr[substring(@id,5)='q4']")
+//	@FindBy (xpath="//tr[substring(@id,5)='q4']")
+//	private List<WebElement> ligne_lireProjets;
+	
+	@FindBy (xpath="//fieldset//div[substring(@id,8)='body']/table/tbody/tr[@class='z-row']")
 	private List<WebElement> ligne_lireProjets;
+	
+	@FindBy (xpath="//tr[td/div/span[contains(.,'Lire')]]//td//span[@title='Supprimer']")
+	private WebElement icone_suppr;
+	
+	@FindBy (xpath="//tr[td/div/span[contains(.,'Lire')]]//td//span[@title='Supprimer']/table[@class='z-button-over']")
+	private WebElement infobulle_suppr;
 	
 
 	
@@ -86,7 +96,7 @@ public class PageCreerProfil extends PageBandeau{
 		assertTrue(menuDeroulant.getText().isEmpty());
 		bouton_ajouterRole.isDisplayed();
 		Outils.verificationTextWebElement("Ajouter un rôle", bouton_ajouterRole);
-		Outils.verifTableau(" Nom du rôle\nActions", colonnes_nomRoleActions);
+		Outils.verifTableau(" " + "Nom du rôle\nActions", colonnes_nomRoleActions);
 		bouton_enregistrer.isDisplayed();
 		Outils.verificationTextWebElement("Enregistrer", bouton_enregistrer);
 		bouton_sauver.isDisplayed();
@@ -97,23 +107,29 @@ public class PageCreerProfil extends PageBandeau{
 		Outils.renseignerChamp(chmps_nom, "Nom du profil");
 	}
 	
-	public void choisirRole(String role) {
-		Outils.selectOption(bouton_menuDeroulant, role);
-		String real = bouton_menuDeroulant.getAttribute("value");
-		System.out.println(bouton_menuDeroulant.getAttribute("value"));
-		assertEquals("[FAIL] Le rôle n'a pas été sélectionné correctement.", role, real);
-		
-	}
-	
-	public void selectionnerRole(WebDriver driver, String role) {
+	public void selectionnerRole(WebDriver driver, String role) throws Exception {
 		Outils.selectionnerOption_pageCreerProfil(driver, role, bouton_flecheMenuDeroulant);
 	}
 	
 	public void cliquerAjouterRole() {
 		bouton_ajouterRole.click();
+		chmps_nom.click();
 	}
 	
-	public void verifAjoutDuRole() {
-		Outils.verifTableau(" Lire tous les projets", ligne_lireProjets);
+	public void verifAjoutDuRole(String role) {
+		Outils.verifTableau(" " + role, ligne_lireProjets);
 	}
+	
+	public void verifIconeSupprimerRole() {
+		icone_suppr.isDisplayed();
+	}
+	
+	public void verifInfobulle(WebDriver driver) {
+		Actions moPoubelle = new Actions(driver);
+		moPoubelle.moveToElement(icone_suppr).build().perform();
+		assertTrue("[FAIL] L'infobulle ne s'affiche pas", infobulle_suppr.isDisplayed());
+	}
+	
+	
+	
 }

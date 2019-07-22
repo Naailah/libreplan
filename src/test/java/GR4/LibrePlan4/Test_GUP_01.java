@@ -37,14 +37,39 @@ public class Test_GUP_01 extends Test_connexion {
 		//SAISIR UNE VALEUR DANS LE CHAMPS "NOM"
 		pageCreerProfil.saisirNomProfil();
 		
-		//CHOISIR UN RÔLE DANS LE MENU DEROULANT
+		//CHOISIR LE RÔLE "LIRE TOUS LES PROJETS" DANS LE MENU DEROULANT
 		pageCreerProfil.selectionnerRole(driver, "Lire");
 		
 		//CLIQUER SUR LE BOUTON "AJOUTER UN RÔLE"
 		pageCreerProfil.cliquerAjouterRole();
 		
-		//VERIFIER L'AJOUT DU RÔLE
-		pageCreerProfil.verifAjoutDuRole();
+		//VERIFIER L'AJOUT DU RÔLE "LIRE TOUS LES PROJETS"
+		pageCreerProfil.verifAjoutDuRole("Lire tous les projets");
+		
+		//VERIFIER LA PRESENCE DE L'ICONE "POUBELLE"
+		pageCreerProfil.verifIconeSupprimerRole();
+		
+		//VERIFIER LA PRESENCE DE L'INFOBULLE "SUPPRIMER"
+		pageCreerProfil.verifInfobulle(driver);
+		
+		//CHOISIR LE RÔLE "FEUILLE DE TEMPS" DANS LE MENU DEROULANT
+		pageCreerProfil.selectionnerRole(driver, "Feuille");
+		
+		//CLIQUER SUR LE BOUTON "AJOUTER UN RÔLE"
+		pageCreerProfil.cliquerAjouterRole();
+		
+		//CHOISIR LE RÔLE "CRITERE" DANS LE MENU DEROULANT
+		pageCreerProfil.selectionnerRole(driver, "Critère");
+		
+		//CLIQUER SUR LE BOUTON "AJOUTER UN RÔLE"
+		pageCreerProfil.cliquerAjouterRole();
+		
+		//CHOISIR LE RÔLE "CALENDRIER" DANS LE MENU DEROULANT
+		pageCreerProfil.selectionnerRole(driver, "Calendrier");
+		
+		//CLIQUER SUR LE BOUTON "AJOUTER UN RÔLE"
+		pageCreerProfil.cliquerAjouterRole();
+		
 		
 	}
 	

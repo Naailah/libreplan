@@ -173,10 +173,11 @@ public class Outils {
 	 * @param option
 	 * @param bouton_flecheMenuDeroulant
 	 */
-	public static void selectionnerOption_pageCreerProfil(WebDriver driver, String option, WebElement bouton_flecheMenuDeroulant) {
+	public static void selectionnerOption_pageCreerProfil(WebDriver driver, String option, WebElement bouton_flecheMenuDeroulant) throws Exception {
 		bouton_flecheMenuDeroulant.click();
+		Thread.sleep(5000);
 		WebElement selectOption = driver.findElement(By.xpath("//table[substring(@id,5)='e5-cave']//tr/td[@class='z-comboitem-text'][contains(.,'" + option + "')]"));
-		//System.out.println(selectOption.getText());
+		System.out.println(selectOption.getText());
 		assertTrue("[FAIL] Pas la bonne sélection", selectOption.getText().contains(option));
 		selectOption.click();		
 	}
