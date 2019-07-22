@@ -2,8 +2,12 @@ package Configuration;
 
 
 import static org.junit.Assert.*;
+
+import java.util.List;
+
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.Select;
 
 import GR4.LibrePlan4.Outils;
 import GR4.LibrePlan4.PageBandeau;
@@ -24,7 +28,34 @@ public class PageCreerProfil extends PageBandeau{
 	
 	@FindBy (xpath="//fieldset[substring(@id,5)='b5']//td[@class='z-button-cm'][text()='Ajouter un rôle']")
 	private WebElement bouton_ajouterRole;
+	
+	@FindBy (xpath="//div[substring(@id,5)='g5'][@class='z-grid']")
+	private List<WebElement> colonnes_nomRoleActions;
+	
+	@FindBy (xpath="//td[@class='z-button-cm'][text()='Enregistrer']")
+	private WebElement bouton_enregistrer;
+	
+	@FindBy (xpath="//td[@class='z-button-cm'][text()='Sauver et continuer']")
+	private WebElement bouton_sauver;
+	
+	@FindBy (xpath="//td[@class='z-button-cm'][text()='Annuler']")
+	private WebElement bouton_annuler;
+	
+	@FindBy (xpath="//div[substring(@id,5)='e5-pp']")
+	private WebElement bouton_menuDeroulant;
+	
+//	@FindBy (xpath="td[substring(@id,5)='e5-chdex']")
+//	private WebElement bouton_menuDeroulant;
+	
+	@FindBy (xpath="//table[substring(@id,5)='e5-cave']//td[contains(.,'Lire')]")
+	private WebElement lien_lireProjets;
+	
+	@FindBy (xpath="//i[substring(@id,5)='e5-btn']")
+	private WebElement bouton_flecheMenuDeroulant;
 
+
+	
+	
 	public PageCreerProfil() {
 		
 	}
@@ -45,10 +76,32 @@ public class PageCreerProfil extends PageBandeau{
 		assertTrue(menuDeroulant.getText().isEmpty());
 		bouton_ajouterRole.isDisplayed();
 		Outils.verificationTextWebElement("Ajouter un rôle", bouton_ajouterRole);
-//		Outils.verifTableau("Nom du rôle Actions", colonnes);
+		Outils.verifTableau(" Nom du rôle\nActions", colonnes_nomRoleActions);
+		bouton_enregistrer.isDisplayed();
+		Outils.verificationTextWebElement("Enregistrer", bouton_enregistrer);
+		bouton_sauver.isDisplayed();
+		Outils.verificationTextWebElement("Annuler", bouton_annuler);
+	}
+	
+	public void saisirNomProfil() {
+		Outils.renseignerChamp(chmps_nom, "Nom du profil");
+	}
+	
+	public void choisirRole(String role) {
+		Outils.selectOption(bouton_menuDeroulant, role);
+		String real = bouton_menuDeroulant.getAttribute("value");
+		System.out.println(bouton_menuDeroulant.getAttribute("value"));
+		assertEquals("[FAIL] Le rôle n'a pas été sélectionné correctement.", role, real);
 		
 	}
 	
-	
+	public void selectionnerRole() {
+		bouton_flecheMenuDeroulant.click();
+		lien_lireProjets.isDisplayed();
+//		System.out.println(lien_lireProjets.getText());
+		lien_lireProjets.click();
+		
+		
+	}
 	
 }

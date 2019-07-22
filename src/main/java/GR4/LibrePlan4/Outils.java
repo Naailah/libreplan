@@ -125,6 +125,11 @@ public class Outils {
 		we.sendKeys(s);
 	}
 	
+	public static void selectOption(WebElement menu, String option) {
+		Select select = new Select(menu);
+		select.selectByValue(option);
+	}
+	
 	public static void copierColler(WebElement element_a_copier, WebElement element_a_coller) {
 		element_a_copier.sendKeys(Keys.chord(Keys.CONTROL, "a"));
 		element_a_copier.sendKeys(Keys.chord(Keys.CONTROL, "c"));
