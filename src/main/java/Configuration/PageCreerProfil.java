@@ -86,7 +86,7 @@ public class PageCreerProfil extends PageBandeau{
 		assertTrue(menuDeroulant.getText().isEmpty());
 		bouton_ajouterRole.isDisplayed();
 		Outils.verificationTextWebElement("Ajouter un rôle", bouton_ajouterRole);
-		Outils.verifTableau("Nom du rôle\nActions", colonnes_nomRoleActions);
+		Outils.verifTableau(" Nom du rôle\nActions", colonnes_nomRoleActions);
 		bouton_enregistrer.isDisplayed();
 		Outils.verificationTextWebElement("Enregistrer", bouton_enregistrer);
 		bouton_sauver.isDisplayed();
@@ -114,6 +114,6 @@ public class PageCreerProfil extends PageBandeau{
 	}
 	
 	public void verifAjoutDuRole() {
-		Outils.verifTableau("Lire tous les projets", ligne_lireProjets);
+		Outils.verifTableau(" Lire tous les projets", ligne_lireProjets);
 	}
 }

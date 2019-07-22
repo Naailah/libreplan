@@ -36,7 +36,7 @@ public class Outils {
 		String listeColonnesReel = new String();
 		for(WebElement colonne : colonnes) {
 			System.out.println(colonne.getText());
-			listeColonnesReel = listeColonnesReel + colonne.getText();
+			listeColonnesReel = listeColonnesReel + " " + colonne.getText();
 		}
 		System.out.println(listeColonnesReel);
 		assertEquals(listeColonneAttendu, listeColonnesReel);

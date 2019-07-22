@@ -48,7 +48,7 @@ public class PageProfilsListe extends PageBandeau {
 	 * Permet de vérifier la présence des colonnes "Nom de profil" et "Actions"
 	 */
 	public void verifColonnesNomActions() {
-		Outils.verifTableau("Nom de profil\nActions", listeColonnes_nomActions);
+		Outils.verifTableau(" Nom de profil\nActions", listeColonnes_nomActions);
 	}	
 	
 	/**
