@@ -3,7 +3,7 @@ package GR4.LibrePlan4;
 import org.junit.Test;
 import org.openqa.selenium.support.PageFactory;
 
-import Configuration.PageCreerProfil;
+import Configuration.PageCreer_ModifierProfil;
 import Configuration.PageProfilsListe;
 
 public class Test_GUP_01 extends Test_connexion {
@@ -29,76 +29,82 @@ public class Test_GUP_01 extends Test_connexion {
 		pageProfilsListe.verifBoutonCreer();
 		
 		//CLIQUER SUR LE BOUTON "CREER"
-		PageCreerProfil pageCreerProfil = pageProfilsListe.cliquerBoutonCreer(driver);
+		PageCreer_ModifierProfil pageCreer_ModifierProfil = pageProfilsListe.cliquerBoutonCreer(driver);
 		
 		//VERIFIER LA PRESENCE DES ELEMENTS DE L'ONGLET "DONNEES DE PROFIL"
-		pageCreerProfil.verifDonneesDeProfil();
+		pageCreer_ModifierProfil.verifDonneesDeProfil();
 		
 		//SAISIR UNE VALEUR DANS LE CHAMPS "NOM"
-		pageCreerProfil.saisirNomProfil();
+		pageCreer_ModifierProfil.saisirNomProfil();
 		
 		//CHOISIR LE RÔLE "LIRE TOUS LES PROJETS" DANS LE MENU DEROULANT
-		pageCreerProfil.selectionnerRole(driver, "Lire");
+		pageCreer_ModifierProfil.selectionnerRole(driver, "Lire");
 		
 		//CLIQUER SUR LE BOUTON "AJOUTER UN RÔLE"
-		pageCreerProfil.cliquerAjouterRole();
+		pageCreer_ModifierProfil.cliquerAjouterRole();
 		
 		//VERIFIER L'AJOUT DU RÔLE "LIRE TOUS LES PROJETS"
-		pageCreerProfil.verifAjoutDuRole("Lire tous les projets");
+		pageCreer_ModifierProfil.verifAjoutDuRole("Lire tous les projets");
 		
 		//VERIFIER LA PRESENCE DE L'ICONE "POUBELLE"
-		pageCreerProfil.verifIconeSupprimerRole();
+		pageCreer_ModifierProfil.verifIconeSupprimerRole();
 		
 		//VERIFIER LA PRESENCE DE L'INFOBULLE "SUPPRIMER"
-		pageCreerProfil.verifInfobulle(driver);
+		pageCreer_ModifierProfil.verifInfobulle(driver);
 		
 		//CHOISIR LE RÔLE "FEUILLE DE TEMPS" DANS LE MENU DEROULANT
-		pageCreerProfil.selectionnerRole(driver, "Feuille");
+		pageCreer_ModifierProfil.selectionnerRole(driver, "Feuille");
 		
 		//CLIQUER SUR LE BOUTON "AJOUTER UN RÔLE"
-		pageCreerProfil.cliquerAjouterRole();
+		pageCreer_ModifierProfil.cliquerAjouterRole();
 		
 		//CHOISIR LE RÔLE "CRITERE" DANS LE MENU DEROULANT
-		pageCreerProfil.selectionnerRole(driver, "Critère");
+		pageCreer_ModifierProfil.selectionnerRole(driver, "Critère");
 		
 		//CLIQUER SUR LE BOUTON "AJOUTER UN RÔLE"
-		pageCreerProfil.cliquerAjouterRole();
+		pageCreer_ModifierProfil.cliquerAjouterRole();
 		
 		//CHOISIR LE RÔLE "CALENDRIER" DANS LE MENU DEROULANT
-		pageCreerProfil.selectionnerRole(driver, "Calendrier");
+		pageCreer_ModifierProfil.selectionnerRole(driver, "Calendrier");
 		
 		//CLIQUER SUR LE BOUTON "AJOUTER UN RÔLE"
-		pageCreerProfil.cliquerAjouterRole();
+		pageCreer_ModifierProfil.cliquerAjouterRole();
 		
 		//VERIFIER L'AJOUT DES RÔLES "FEUILLE DE TEMPS", "CALENDRIER" ET "CRITERE"
-		pageCreerProfil.verifAjout3roles();
+		pageCreer_ModifierProfil.verifAjout3roles();
 		
 		//CHOISIR LE RÔLE "LIRE TOUS LES PROJETS" DANS LE MENU DEROULANT
-		pageCreerProfil.selectionnerRole(driver, "Lire");
+		pageCreer_ModifierProfil.selectionnerRole(driver, "Lire");
 				
 		//CLIQUER SUR LE BOUTON "AJOUTER UN RÔLE"
-		pageCreerProfil.cliquerAjouterRole();
+		pageCreer_ModifierProfil.cliquerAjouterRole();
 		
 		//VERIFIER QU'IL N'Y A PAS DE DOUBLON
-		pageCreerProfil.verifPasDeDoublon();
+		pageCreer_ModifierProfil.verifPasDeDoublon();
 		
 		//SUPPRIMER LE RÔLE "CRITERE"
-		pageCreerProfil.supprRoleCritere();
+		pageCreer_ModifierProfil.supprRoleCritere();
 		
 		//VERIFIER LA SUPPRESSION DU RÔLE "CRITERE"
-		pageCreerProfil.verifSupprRoleCritere();
+		pageCreer_ModifierProfil.verifSupprRoleCritere();
 		
 		//SUPPRIMER TOUS LES RÔLES
-		pageCreerProfil.supprRoles();
+		pageCreer_ModifierProfil.supprRoles();
 		
 		//VERIFIER LA SUPPRESSION DE TOUS LES RÔLES
-		pageCreerProfil.verifListeVide();
+		pageCreer_ModifierProfil.verifListeVide();
 		
 		//CLIQUER SUR LE BOUTON "ENREGISTRER"
-		pageCreerProfil.clicEnregister(driver);
+		pageCreer_ModifierProfil.clicEnregister(driver);
 		
 		//VERIFIER LE MESSAGE DE CONFIRMATION D'ENREGISTREMENT
 		pageProfilsListe.verifMsgConfirmation();
+		
+		//VERIFIER L'AJOUT DU PROFIL
+		pageProfilsListe.verifAjoutProfil();
+		
+		//CLIQUER SUR L'ICÔNE "MODIFIER"
+		pageProfilsListe.cliquerModifNomDuProfil(driver);
 		
 		
 	}

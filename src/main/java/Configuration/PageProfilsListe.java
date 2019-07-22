@@ -39,6 +39,12 @@ public class PageProfilsListe extends PageBandeau {
 	@FindBy (xpath="//div[@class='message_INFO']")
 	private WebElement msgConfirmation;
 	
+	@FindBy (xpath="//tr[td/div/span[text()='Nom du profil']]")
+	private List<WebElement> ligne_nomDuProfil;
+	
+	@FindBy (xpath="//tr[td/div/span[contains(.,'Nom du profil')]]//td//span[@title='Modifier']")
+	private WebElement icone_modifier_nomDuProfil;
+	
 	
 	public PageProfilsListe() {	
 		
@@ -84,9 +90,9 @@ public class PageProfilsListe extends PageBandeau {
 	 * @param driver
 	 * @return
 	 */
-	public PageCreerProfil cliquerBoutonCreer(WebDriver driver) {
+	public PageCreer_ModifierProfil cliquerBoutonCreer(WebDriver driver) {
 		bouton_creer.click();
-		return PageFactory.initElements(driver, PageCreerProfil.class);
+		return PageFactory.initElements(driver, PageCreer_ModifierProfil.class);
 	}
 	
 //	public void insererProfil () throws Exception {
@@ -104,22 +110,15 @@ public class PageProfilsListe extends PageBandeau {
 		Outils.verifierCouleur(msgConfirmation);
 	}
 	
-//	String color = driver.findElement(By.xpath("//div[@class='gb_e gb_f gb_g gb_xb']/a")).getCssValue("color");
-//	String[] numbers = color.replace("rgb(", "").replace(")", "").split(",");
-//	int r = Integer.parseInt(numbers[0].trim());
-//	int g = Integer.parseInt(numbers[1].trim());
-//	int b = Integer.parseInt(numbers[2].trim());
-//	System.out.println("r: " + r + "g: " + g + "b: " + b);
-//	String hex = "#" + Integer.toHexString(r) + Integer.toHexString(g) + Integer.toHexString(b);
-//	System.out.println(hex);
-//	
-//	
-//	
-//	
-//	public void convertioncouleur() {
-//
-//
-//	}
+	public void verifAjoutProfil() {
+		Outils.verifTableau(" " + "Nom du profil", ligne_nomDuProfil);
+	}
+	
+	public PageCreer_ModifierProfil cliquerModifNomDuProfil(WebDriver driver) {
+		icone_modifier_nomDuProfil.isDisplayed();
+		icone_modifier_nomDuProfil.click();
+		return PageFactory.initElements(driver, PageCreer_ModifierProfil.class);
+	}
 	
 	
 }

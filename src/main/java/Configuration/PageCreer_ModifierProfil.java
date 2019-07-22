@@ -17,7 +17,7 @@ import org.openqa.selenium.support.ui.Select;
 import GR4.LibrePlan4.Outils;
 import GR4.LibrePlan4.PageBandeau;
 
-public class PageCreerProfil extends PageBandeau{
+public class PageCreer_ModifierProfil extends PageBandeau{
 	
 	@FindBy (xpath="//input[substring(@id,5)='a5']")
 	private WebElement chmps_nom;
@@ -94,8 +94,10 @@ public class PageCreerProfil extends PageBandeau{
 	@FindBy (xpath="//fieldset//span[@title='Supprimer'][@class='icono z-button']")
 	private List<WebElement> icones_suppr;
 	
+
 	
-	public PageCreerProfil() {
+	
+	public PageCreer_ModifierProfil() {
 		
 	}
 
