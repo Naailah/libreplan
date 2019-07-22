@@ -4,9 +4,11 @@ import static org.junit.Assert.*;
 
 import java.io.File;
 import java.sql.SQLException;
+import java.text.DateFormatSymbols;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.Locale;
 
 import org.dbunit.Assertion;
 import org.dbunit.IDatabaseTester;
@@ -180,6 +182,33 @@ public class Outils {
 	}
 
 	
-	
+	// Vérifie que la date est au format jj mois. aaaa
+		public static void isValidFormat(String dateForm) {
+			// jour mois et année de la date du champ
+			int jour = Integer.parseInt(dateForm.substring(0,2));
+			String mois = dateForm.substring(3,8);
+			int annee = Integer.parseInt(dateForm.substring(9,13));
+			
+			// Variables avec la date du jour
+			Calendar actuelle = Calendar.getInstance();
+			DateFormatSymbols dFR = new DateFormatSymbols(Locale.FRENCH);
+			String[] moisCourtsFR = dFR.getShortMonths();
+			
+			//Vérification de la date
+			assertEquals(actuelle.get(Calendar.DATE),jour);
+			
+			
+			//Vérification du mois 
+			assertEquals(moisCourtsFR[actuelle.get(Calendar.MONTH)],mois);
+			
+			//Vérification de l'année
+			assertTrue(actuelle.get(Calendar.YEAR)==annee);
+			
+		
+			// Syso de vérification
+			System.out.println(" date du jour : "+actuelle.get(Calendar.DATE)+" "+actuelle.get(Calendar.MONTH)+" "+actuelle.get(Calendar.YEAR));
+			System.out.println(" date du champ : "+jour+" "+mois+" "+annee);
+			
+		}
 	
 }
