@@ -17,6 +17,7 @@ import org.dbunit.dataset.ReplacementDataSet;
 import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
 import org.dbunit.operation.DatabaseOperation;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -124,6 +125,12 @@ public class Outils {
 		we.sendKeys(s);
 	}
 	
+	public static void copierColler(WebElement element_a_copier, WebElement element_a_coller) {
+		element_a_copier.sendKeys(Keys.chord(Keys.CONTROL, "a"));
+		element_a_copier.sendKeys(Keys.chord(Keys.CONTROL, "c"));
+		element_a_coller.sendKeys(Keys.chord(Keys.CONTROL, "v"));
+	}
+		
 	public static void verificationTextWebElement(String expected, WebElement we) {
 		try{
 			assertEquals(expected, we.getText());
