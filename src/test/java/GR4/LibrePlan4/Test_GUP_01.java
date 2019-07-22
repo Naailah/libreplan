@@ -70,6 +70,19 @@ public class Test_GUP_01 extends Test_connexion {
 		//CLIQUER SUR LE BOUTON "AJOUTER UN RÔLE"
 		pageCreerProfil.cliquerAjouterRole();
 		
+		//VERIFIER L'AJOUT DES RÔLES "FEUILLE DE TEMPS", "CALENDRIER" ET "CRITERE"
+		pageCreerProfil.verifAjout3roles();
+		
+		//CHOISIR LE RÔLE "LIRE TOUS LES PROJETS" DANS LE MENU DEROULANT
+		pageCreerProfil.selectionnerRole(driver, "Lire");
+				
+		//CLIQUER SUR LE BOUTON "AJOUTER UN RÔLE"
+		pageCreerProfil.cliquerAjouterRole();
+		
+		//VERIFIER LA TAILLE DU TABLEAU
+		pageCreerProfil.verifPasDeDoublon();
+		
+		
 		
 	}
 	

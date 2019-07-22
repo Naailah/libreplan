@@ -175,7 +175,7 @@ public class Outils {
 	 */
 	public static void selectionnerOption_pageCreerProfil(WebDriver driver, String option, WebElement bouton_flecheMenuDeroulant) throws Exception {
 		bouton_flecheMenuDeroulant.click();
-		Thread.sleep(5000);
+		Thread.sleep(1000);
 		WebElement selectOption = driver.findElement(By.xpath("//table[substring(@id,5)='e5-cave']//tr/td[@class='z-comboitem-text'][contains(.,'" + option + "')]"));
 		System.out.println(selectOption.getText());
 		assertTrue("[FAIL] Pas la bonne sélection", selectOption.getText().contains(option));
@@ -210,6 +210,18 @@ public class Outils {
 			System.out.println(" date du jour : "+actuelle.get(Calendar.DATE)+" "+actuelle.get(Calendar.MONTH)+" "+actuelle.get(Calendar.YEAR));
 			System.out.println(" date du champ : "+jour+" "+mois+" "+annee);
 			
+		}
+		
+		
+		/**
+		 * Vérifier la taille d'une liste
+		 * @param liste
+		 * @param taille
+		 */
+		public static void verifTailleListe(List<WebElement> liste, int taille) {
+			int listSize = liste.size();
+			System.out.println(listSize);
+			assertTrue(taille == listSize);
 		}
 	
 }

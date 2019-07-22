@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 
 import java.util.List;
 
+import org.apache.poi.util.SuppressForbidden;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -62,10 +63,10 @@ public class PageCreerProfil extends PageBandeau{
 	@FindBy (xpath="//table[substring(@id,5)='e5-cave']//tr[substring(@id,1,4)='qOwP']/td[@class='z-comboitem-text']")
 	private WebElement lien_optionsRole;
 	
-//	@FindBy (xpath="//tr[substring(@id,5)='q4']")
+//	@FindBy (xpath="//fieldset//div[substring(@id,8)='body']/table/tbody/tr[@class='z-row']")
 //	private List<WebElement> ligne_lireProjets;
 	
-	@FindBy (xpath="//fieldset//div[substring(@id,8)='body']/table/tbody/tr[@class='z-row']")
+	@FindBy (xpath="//tr[td/div/span[text()='Lire tous les projets']]")
 	private List<WebElement> ligne_lireProjets;
 	
 	@FindBy (xpath="//tr[td/div/span[contains(.,'Lire')]]//td//span[@title='Supprimer']")
@@ -74,7 +75,17 @@ public class PageCreerProfil extends PageBandeau{
 	@FindBy (xpath="//tr[td/div/span[contains(.,'Lire')]]//td//span[@title='Supprimer']/table[@class='z-button-over']")
 	private WebElement infobulle_suppr;
 	
-
+	@FindBy (xpath="//tr[td/div/span[text()='Feuille de temps']]")
+	private List<WebElement> ligne_feuilleTemps;
+	
+	@FindBy (xpath="//tr[td/div/span[text()='Calendrier']]")
+	private List<WebElement> ligne_calendrier;
+	
+	@FindBy (xpath="//tr[td/div/span[text()='Critère ']]")
+	private List<WebElement> ligne_critere;
+	
+	@FindBy (xpath="//fieldset//div[substring(@id,8)='body']/table[@style='table-layout:fixed;']/tbody/tr[contains(@class, 'z-row')]")
+	private List<WebElement> liste_lignesTableau;
 	
 	public PageCreerProfil() {
 		
@@ -113,7 +124,6 @@ public class PageCreerProfil extends PageBandeau{
 	
 	public void cliquerAjouterRole() {
 		bouton_ajouterRole.click();
-		chmps_nom.click();
 	}
 	
 	public void verifAjoutDuRole(String role) {
@@ -129,6 +139,23 @@ public class PageCreerProfil extends PageBandeau{
 		moPoubelle.moveToElement(icone_suppr).build().perform();
 		assertTrue("[FAIL] L'infobulle ne s'affiche pas", infobulle_suppr.isDisplayed());
 	}
+	
+	public void verifAjout3roles() {
+		Outils.verifTableau(" " + "Feuille de temps", ligne_feuilleTemps);
+		Outils.verifTableau(" " + "Calendrier", ligne_calendrier);
+		Outils.verifTableau(" " + "Critère", ligne_critere);
+	}
+	
+	public void verifPasDeDoublon() {
+		System.out.println(ligne_lireProjets.size());
+		assertTrue("[FAIL] Il y a un doublon", ligne_lireProjets.size()==1);
+		Outils.verifTailleListe(liste_lignesTableau, 4);
+	}
+	
+
+	
+	
+	
 	
 	
 	
