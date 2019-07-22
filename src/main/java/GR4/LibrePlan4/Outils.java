@@ -235,8 +235,6 @@ public class Outils {
 				liste.get(index).click();
 				Thread.sleep(1000);
 			}
-			
-
 		}
 	
 }
