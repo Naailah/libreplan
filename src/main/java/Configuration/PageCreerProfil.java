@@ -5,6 +5,8 @@ import static org.junit.Assert.*;
 
 import java.util.List;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
@@ -53,7 +55,8 @@ public class PageCreerProfil extends PageBandeau{
 	@FindBy (xpath="//i[substring(@id,5)='e5-btn']")
 	private WebElement bouton_flecheMenuDeroulant;
 
-
+	@FindBy (xpath="//table[substring(@id,5)='e5-cave']//tr[substring(@id,1,4)='qOwP']/td[@class='z-comboitem-text']")
+	private WebElement lien_optionsRole;
 	
 	
 	public PageCreerProfil() {
@@ -95,13 +98,8 @@ public class PageCreerProfil extends PageBandeau{
 		
 	}
 	
-	public void selectionnerRole() {
-		bouton_flecheMenuDeroulant.click();
-		lien_lireProjets.isDisplayed();
-//		System.out.println(lien_lireProjets.getText());
-		lien_lireProjets.click();
-		
-		
+	public void selectionnerRole(WebDriver driver, String role) {
+		Outils.selectionnerOption_pageCreerProfil(driver, role, bouton_flecheMenuDeroulant);
 	}
 	
 }
