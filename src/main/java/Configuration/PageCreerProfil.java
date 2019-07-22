@@ -11,6 +11,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 
 import GR4.LibrePlan4.Outils;
@@ -147,9 +148,12 @@ public class PageCreerProfil extends PageBandeau{
 		assertTrue("[FAIL] L'infobulle ne s'affiche pas", infobulle_suppr.isDisplayed());
 	}
 	
-	public void verifAjout3roles() {
+	public void verifAjout3roles() throws Exception{
+		Thread.sleep(1000);
 		Outils.verifTableau(" " + "Feuille de temps", ligne_feuilleTemps);
+		Thread.sleep(1000);
 		Outils.verifTableau(" " + "Calendrier", ligne_calendrier);
+		Thread.sleep(1000);
 		Outils.verifTableau(" " + "Critère", ligne_critere);
 	}
 	
@@ -167,7 +171,7 @@ public class PageCreerProfil extends PageBandeau{
 	public void verifSupprRoleCritere() throws Exception {
 		Thread.sleep(1000);
 //		System.out.println(ligne_critere.size());
-		assertTrue(ligne_critere.isEmpty());
+		assertTrue("[FAIL] La ligne n'a pas été correctement supprimée",ligne_critere.isEmpty());
 		Outils.verifTailleListe(liste_lignesTableau, 3);
 	}
 	
@@ -175,7 +179,15 @@ public class PageCreerProfil extends PageBandeau{
 		Outils.supprimerElementListe(icones_suppr, 0, 1, 2);
 	}
 	
+	public void verifListeVide() {
+		assertTrue("[FAIL] La liste n'est pas vide",liste_lignesTableau.isEmpty());
+	}
 	
-	
+	public PageProfilsListe clicEnregister(WebDriver driver) {
+		bouton_enregistrer.isDisplayed();
+		bouton_enregistrer.click();
+		return PageFactory.initElements(driver, PageProfilsListe.class);
+	}
+
 	
 }

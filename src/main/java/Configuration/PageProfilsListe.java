@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import java.util.List;
 
+import org.apache.http.util.Args;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -35,7 +36,8 @@ public class PageProfilsListe extends PageBandeau {
 	@FindBy (xpath="//tr[substring(@id,5)='m4']")
 	private List<WebElement> listeColonnes_nomActions;
 	
-	
+	@FindBy (xpath="//div[@class='message_INFO']")
+	private WebElement msgConfirmation;
 	
 	
 	public PageProfilsListe() {	
@@ -96,8 +98,28 @@ public class PageProfilsListe extends PageBandeau {
 		listeIcones_supprimer.isDisplayed();
 	}
 	
+	public void verifMsgConfirmation() {
+		msgConfirmation.isDisplayed();
+		Outils.verificationTextWebElement("Profil \"Nom du profil\" enregistré", msgConfirmation);
+		Outils.verifierCouleur(msgConfirmation);
+	}
 	
-	
+//	String color = driver.findElement(By.xpath("//div[@class='gb_e gb_f gb_g gb_xb']/a")).getCssValue("color");
+//	String[] numbers = color.replace("rgb(", "").replace(")", "").split(",");
+//	int r = Integer.parseInt(numbers[0].trim());
+//	int g = Integer.parseInt(numbers[1].trim());
+//	int b = Integer.parseInt(numbers[2].trim());
+//	System.out.println("r: " + r + "g: " + g + "b: " + b);
+//	String hex = "#" + Integer.toHexString(r) + Integer.toHexString(g) + Integer.toHexString(b);
+//	System.out.println(hex);
+//	
+//	
+//	
+//	
+//	public void convertioncouleur() {
+//
+//
+//	}
 	
 	
 }

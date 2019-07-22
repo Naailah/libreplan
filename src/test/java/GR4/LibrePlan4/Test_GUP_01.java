@@ -90,6 +90,17 @@ public class Test_GUP_01 extends Test_connexion {
 		
 		//SUPPRIMER TOUS LES RÔLES
 		pageCreerProfil.supprRoles();
+		
+		//VERIFIER LA SUPPRESSION DE TOUS LES RÔLES
+		pageCreerProfil.verifListeVide();
+		
+		//CLIQUER SUR LE BOUTON "ENREGISTRER"
+		pageCreerProfil.clicEnregister(driver);
+		
+		//VERIFIER LE MESSAGE DE CONFIRMATION D'ENREGISTREMENT
+		pageProfilsListe.verifMsgConfirmation();
+		
+		
 	}
 	
 }
