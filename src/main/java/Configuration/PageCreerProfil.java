@@ -172,9 +172,7 @@ public class PageCreerProfil extends PageBandeau{
 	}
 	
 	public void supprRoles() throws Exception{
-		Outils.supprimerElementListe(icones_suppr, 0);
-
-
+		Outils.supprimerElementListe(icones_suppr, 0, 1, 2);
 	}
 	
 	

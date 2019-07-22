@@ -229,9 +229,14 @@ public class Outils {
 		 * @param liste
 		 * @throws Exception
 		 */
-		public static void supprimerElementListe(List<WebElement> liste, int index) throws Exception{
-			liste.get(index).click();
-			Thread.sleep(1000);
+		public static void supprimerElementListe(List<WebElement> liste, int index, int valeur_i, int valeur_tant_que_i_inf_ou_egal) throws Exception{
+			for(int i = index; i <= valeur_tant_que_i_inf_ou_egal; i++)
+			{
+				liste.get(index).click();
+				Thread.sleep(1000);
+			}
+			
+
 		}
 	
 }
