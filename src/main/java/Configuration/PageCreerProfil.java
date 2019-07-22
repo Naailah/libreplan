@@ -28,7 +28,10 @@ public class PageCreerProfil extends PageBandeau{
 	@FindBy (xpath="//fieldset[substring(@id,5)='b5']//i[substring(@id,5)='e5']")
 	private WebElement menuDeroulant;
 	
-	@FindBy (xpath="//fieldset[substring(@id,5)='b5']//td[@class='z-button-cm'][text()='Ajouter un rôle']")
+//	@FindBy (xpath="//fieldset[substring(@id,5)='b5']//td[@class='z-button-cm'][text()='Ajouter un rôle']")
+//	private WebElement bouton_ajouterRole;
+	
+	@FindBy (xpath="//td[@class='z-button-cm'][text()='Ajouter un rôle']")
 	private WebElement bouton_ajouterRole;
 	
 	@FindBy (xpath="//div[substring(@id,5)='g5'][@class='z-grid']")
@@ -58,6 +61,10 @@ public class PageCreerProfil extends PageBandeau{
 	@FindBy (xpath="//table[substring(@id,5)='e5-cave']//tr[substring(@id,1,4)='qOwP']/td[@class='z-comboitem-text']")
 	private WebElement lien_optionsRole;
 	
+	@FindBy (xpath="//tr[substring(@id,5)='q4']")
+	private List<WebElement> ligne_lireProjets;
+	
+
 	
 	public PageCreerProfil() {
 		
@@ -79,7 +86,7 @@ public class PageCreerProfil extends PageBandeau{
 		assertTrue(menuDeroulant.getText().isEmpty());
 		bouton_ajouterRole.isDisplayed();
 		Outils.verificationTextWebElement("Ajouter un rôle", bouton_ajouterRole);
-		Outils.verifTableau(" Nom du rôle\nActions", colonnes_nomRoleActions);
+		Outils.verifTableau("Nom du rôle\nActions", colonnes_nomRoleActions);
 		bouton_enregistrer.isDisplayed();
 		Outils.verificationTextWebElement("Enregistrer", bouton_enregistrer);
 		bouton_sauver.isDisplayed();
@@ -102,4 +109,11 @@ public class PageCreerProfil extends PageBandeau{
 		Outils.selectionnerOption_pageCreerProfil(driver, role, bouton_flecheMenuDeroulant);
 	}
 	
+	public void cliquerAjouterRole() {
+		bouton_ajouterRole.click();
+	}
+	
+	public void verifAjoutDuRole() {
+		Outils.verifTableau("Lire tous les projets", ligne_lireProjets);
+	}
 }

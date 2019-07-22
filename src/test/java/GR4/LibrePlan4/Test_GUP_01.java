@@ -37,9 +37,15 @@ public class Test_GUP_01 extends Test_connexion {
 		//SAISIR UNE VALEUR DANS LE CHAMPS "NOM"
 		pageCreerProfil.saisirNomProfil();
 		
-//		//CHOISIR UN RÔLE DANS LE MENU DEROULANT
-//		pageCreerProfil.choisirRole("Lire tous les projets");
+		//CHOISIR UN RÔLE DANS LE MENU DEROULANT
 		pageCreerProfil.selectionnerRole(driver, "Lire");
+		
+		//CLIQUER SUR LE BOUTON "AJOUTER UN RÔLE"
+		pageCreerProfil.cliquerAjouterRole();
+		
+		//VERIFIER L'AJOUT DU RÔLE
+		pageCreerProfil.verifAjoutDuRole();
+		
 	}
 	
 }

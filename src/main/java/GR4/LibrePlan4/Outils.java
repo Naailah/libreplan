@@ -35,7 +35,8 @@ public class Outils {
 	public static void verifTableau(String listeColonneAttendu, List<WebElement> colonnes) {
 		String listeColonnesReel = new String();
 		for(WebElement colonne : colonnes) {
-			listeColonnesReel = listeColonnesReel+ " " +colonne.getText();
+			System.out.println(colonne.getText());
+			listeColonnesReel = listeColonnesReel + colonne.getText();
 		}
 		System.out.println(listeColonnesReel);
 		assertEquals(listeColonneAttendu, listeColonnesReel);
