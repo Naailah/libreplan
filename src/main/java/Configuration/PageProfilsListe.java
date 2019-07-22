@@ -1,6 +1,9 @@
 package Configuration;
 
 import static org.junit.Assert.*;
+
+import java.util.List;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -9,18 +12,11 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import GR4.LibrePlan4.Outils;
+import GR4.LibrePlan4.PageBandeau;
 
-public class PageProfilsListe {
+public class PageProfilsListe extends PageBandeau {
 
-	@FindBy (xpath="//button[substring(@id,5)='81-b'][@class='z-menu-btn']")
-	private WebElement bouton_configuration;
-	
-//	@FindBy (xpath="//a[substring(@id,5)='c1-a']")
-//	private WebElement lien_profils;
-	
-	@FindBy (xpath="//a[contains(@href,'profiles.zul')]")
-	private WebElement lien_profils;
-	
+
 	@FindBy (xpath="//table[@style='table-layout:fixed;']//div[text()='Nom de profil']")
 	private WebElement colonne_nom;
 	
@@ -30,7 +26,15 @@ public class PageProfilsListe {
 	@FindBy (xpath="//td[@class='z-button-cm'][text()='Créer']")
 	private WebElement bouton_creer;
 
-
+	@FindBy (xpath="//img[@src='/libreplan/common/img/ico_editar1.png']")
+	private WebElement listeIcones_modifier;
+	
+	@FindBy (xpath="//img[@src='/libreplan/common/img/ico_borrar1.png']")
+	private WebElement listeIcones_supprimer;
+	
+	@FindBy (xpath="//tr[substring(@id,5)='m4']")
+	private List<WebElement> listeColonnes_nomActions;
+	
 	
 	
 	
@@ -38,18 +42,17 @@ public class PageProfilsListe {
 		
 	}
 
-	/**
-	 * Permet de faire un mouseover sur l'onglet "Configuration"
-	 * @param driver
-	 */
-	public void mouseoverConfiguration(WebDriver driver) {
-		Actions moConfig = new Actions(driver);
-		moConfig.moveToElement(bouton_configuration).build().perform();
-		lien_profils.click();		
-	}
+	
 	
 	/**
-	 * Permet de vérifier la présence de la colonne "Nom de profil"
+	 * Permet de vérifier la présence des colonnes "Nom de profil" et "Actions"
+	 */
+	public void verifColonnesNomActions() {
+		Outils.verifTableau(" Nom de profil\nActions", listeColonnes_nomActions);
+	}	
+	
+	/**
+	 * OLD - Permet de vérifier la présence de la colonne "Nom de profil"
 	 */
 	public void verifColonneNom() {
 //		System.out.println(colonne_nom.getText());
@@ -57,7 +60,7 @@ public class PageProfilsListe {
 	}
 	
 	/**
-	 * Permet de vérifier la présence de la colonne "Actions"
+	 * OLD - Permet de vérifier la présence de la colonne "Actions"
 	 */
 	public void verifColonneActions() {
 //		System.out.println(colonne_actions.getText());
@@ -83,4 +86,20 @@ public class PageProfilsListe {
 		bouton_creer.click();
 		return PageFactory.initElements(driver, PageCreerProfil.class);
 	}
+	
+//	public void insererProfil () throws Exception {
+//		Outils.insertData("src/main/resources/datasets/insertProfile.xml");
+//	}
+	
+	public void verifIconesModifierSupprimer() {
+		listeIcones_modifier.isDisplayed();
+		listeIcones_supprimer.isDisplayed();
+		
+		
+	}
+	
+	
+	
+	
+	
 }
