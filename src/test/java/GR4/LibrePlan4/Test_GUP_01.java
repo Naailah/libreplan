@@ -1,5 +1,7 @@
 package GR4.LibrePlan4;
 
+import java.util.NoSuchElementException;
+
 import org.junit.Test;
 import org.openqa.selenium.support.PageFactory;
 
@@ -31,9 +33,9 @@ public class Test_GUP_01 extends Test_connexion {
 		//VERIFIER LA PRESENCE DU BOUTON "CREER"
 		pageProfilsListe.verifBoutonCreer();
 		
-//		//SUPPRIMER LES PROFILS CREES
-//		pageProfilsListe.supprProfilsCrees(driver, "Nom du profil");
-//		pageProfilsListe.supprProfilsCrees(driver, "Utilisateur test");
+		//SUPPRIMER LES PROFILS CREES
+		pageProfilsListe.supprProfilsCrees(driver, "Nom du profil");
+		pageProfilsListe.supprProfilsCrees(driver, "Utilisateur test");
 		
 		//CLIQUER SUR LE BOUTON "CREER"
 		PageCreer_ModifierProfil pageCreer_ModifierProfil = pageProfilsListe.cliquerBoutonCreer(driver);
@@ -111,10 +113,11 @@ public class Test_GUP_01 extends Test_connexion {
 		pageProfilsListe.verifTitreProfilsListe();
 		
 		//VERIFIER LE MESSAGE DE CONFIRMATION D'ENREGISTREMENT
-		pageProfilsListe.verifMsgConfirmation();
+		pageProfilsListe.verifMsgConfirmation("Nom du profil");
 		
 		//VERIFIER L'AJOUT DU PROFIL
-		pageProfilsListe.verifAjoutProfil("Nom du profil");
+		pageProfilsListe.verifAjoutNomDuProfil("Nom du profil");
+//		pageProfilsListe.verifAjoutProfil(driver,"Nom du profil");
 		
 		//CLIQUER SUR L'ICÔNE "MODIFIER"
 		pageProfilsListe.cliquerModifNomDuProfil(driver);
@@ -156,10 +159,10 @@ public class Test_GUP_01 extends Test_connexion {
 		pageProfilsListe.verifTitreProfilsListe();
 		
 		//VERIFIER LE MESSAGE DE CONFIRMATION D'ENREGISTREMENT
-		pageProfilsListe.verifMsgConfirmation();
+		pageProfilsListe.verifMsgConfirmation("Utilisateur test");
 				
 		//VERIFIER L'AJOUT DU PROFIL
-		pageProfilsListe.verifAjoutProfil("Nom du profil");
+		pageProfilsListe.verifAjoutUtilisateurTest("Utilisateur test");
 		
 		//SUPPRIMER LES PROFILS CREES
 		pageProfilsListe.supprProfilsCrees(driver, "Nom du profil");

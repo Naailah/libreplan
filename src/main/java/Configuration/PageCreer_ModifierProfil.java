@@ -196,8 +196,9 @@ public class PageCreer_ModifierProfil extends PageBandeau{
 		return PageFactory.initElements(driver, PageProfilsListe.class);
 	}
 
-	public void verifTitreCreerModifProfil(String modifOuCreer) {
+	public void verifTitreCreerModifProfil(String modifOuCreer) throws Exception {
 		titre_CreerModifierProfil.isDisplayed();
+		Thread.sleep(500);
 		Outils.verificationTextWebElement(modifOuCreer, titre_CreerModifierProfil);
 	}
 	

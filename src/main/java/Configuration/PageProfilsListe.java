@@ -2,12 +2,17 @@ package Configuration;
 
 import static org.junit.Assert.*;
 
+import java.sql.Driver;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import org.apache.http.util.Args;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -48,6 +53,11 @@ public class PageProfilsListe extends PageBandeau {
 	@FindBy (xpath="//div[@class='z-window-embedded-header'][text()='Profils Liste']")
 	private WebElement titre_profilsListe;
 	
+	@FindBy (xpath="//td[@class='z-button-cm'][text()='OK']")
+	private WebElement bouton_ok;
+	
+	@FindBy (xpath="//tr[td/div/span[text()='Utilisateur test']]")
+	private List<WebElement> ligne_utilisateurTest;
 
 	
 	
@@ -95,7 +105,9 @@ public class PageProfilsListe extends PageBandeau {
 	 * @param driver
 	 * @return
 	 */
-	public PageCreer_ModifierProfil cliquerBoutonCreer(WebDriver driver) {
+	public PageCreer_ModifierProfil cliquerBoutonCreer(WebDriver driver) throws Exception {
+		Thread.sleep(500);
+		bouton_creer.isDisplayed();
 		bouton_creer.click();
 		return PageFactory.initElements(driver, PageCreer_ModifierProfil.class);
 	}
@@ -109,14 +121,24 @@ public class PageProfilsListe extends PageBandeau {
 		listeIcones_supprimer.isDisplayed();
 	}
 	
-	public void verifMsgConfirmation() {
+	public void verifMsgConfirmation(String nom) {
 		msgConfirmation.isDisplayed();
-		Outils.verificationTextWebElement("Profil \"Nom du profil\" enregistré", msgConfirmation);
+		Outils.verificationTextWebElement("Profil \"" + nom + "\" enregistré", msgConfirmation);
 		Outils.verifierCouleur(msgConfirmation, "#cceecc");
 	}
 	
-	public void verifAjoutProfil(String nom) {
+//	public void verifAjoutProfil(WebDriver driver, String nom) throws Exception {	
+//		List<WebElement> ligne_profil = driver.findElements(By.xpath("//tr[td/div/span[text()='\"" + nom + "\"']]"));
+//		Thread.sleep(500);
+//		Outils.verifTableau(" " + nom, ligne_profil);
+//	}
+	
+	public void verifAjoutNomDuProfil(String nom) {
 		Outils.verifTableau(" " + nom, ligne_nomDuProfil);
+	}
+	
+	public void verifAjoutUtilisateurTest(String nom) {
+		Outils.verifTableau(" " + nom, ligne_utilisateurTest);
 	}
 	
 	public PageCreer_ModifierProfil cliquerModifNomDuProfil(WebDriver driver) {
@@ -125,17 +147,56 @@ public class PageProfilsListe extends PageBandeau {
 		return PageFactory.initElements(driver, PageCreer_ModifierProfil.class);
 	}
 	
-	public void verifTitreProfilsListe() {
+	public void verifTitreProfilsListe() throws Exception {
 		titre_profilsListe.isDisplayed();
+		Thread.sleep(500);
 		Outils.verificationTextWebElement("Profils Liste", titre_profilsListe);
 	}
 	
-	public void supprProfilsCrees(WebDriver driver, String nom) {
-		WebElement supprProfil = driver.findElement(By.xpath("//tr[td/div/span[contains(.," + nom + ")]]//td//span[@title='Supprimer']"));
-		if(supprProfil.isDisplayed()) {
+	public boolean supprProfilsCrees(WebDriver driver, String nom) {
+//	WebElement supprProfil = driver.findElement(By.xpath("//tr[td/div/span[contains(.,'" + nom + "')]]//td//span[@title='Supprimer']"));
+		
+
+//		if(!supprProfil.isDisplayed()) {
+//			System.out.println("Pas displayed");
+//		}
+//		else{
+//			supprProfil.click();
+//		}
+		
+		
+		
+		try {
+			WebElement supprProfil = driver.findElement(By.xpath("//tr[td/div/span[contains(.,'" + nom + "')]]//td//span[@title='Supprimer']"));
+			supprProfil.isDisplayed();
 			supprProfil.click();
-		}
+			bouton_ok.isDisplayed();
+			bouton_ok.click();
+		
+			}
+			catch(Exception e) {
+				System.out.println("[FAIL] Le profil " + nom + " n'est pas présent");
+				return false;
+//			throw e;
+			} return true;
+//		finally {
+//			System.out.println("[FAIL] Le profil " + nom + " n'est pas présent");
+//		}
+		
+		
+				
 	}
+
+
+
+	private By findElement(By xpath) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
+
 	
 
 }
