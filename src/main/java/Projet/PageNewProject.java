@@ -10,14 +10,23 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Locale;
 
+import org.dbunit.dataset.IDataSet;
+import org.dbunit.dataset.ReplacementDataSet;
+import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+
 import static org.junit.Assert.*;
 import GR4.LibrePlan4.Outils;
+import Ressources.PageListedecalendriers;
 
 public class PageNewProject {
 	@FindBy(xpath = "//div[@class='z-window-modal-cnt-noborder']/descendant::table[2]//tr[not(contains(@id,'faker'))][contains(@class,'z-row')]")
@@ -43,8 +52,21 @@ public class PageNewProject {
 
 	@FindBy(xpath = "//input[substring(@id,6)='9-real'][substring(@class,3)='datebox-inp']")
 	private List<WebElement> liste_field_date;
+	
+	@FindBy(xpath = "//i[@class='z-datebox-btn']")
+	private List<WebElement> liste_button_date;
+	
+	@FindBy(xpath = "//input[following-sibling::i[@class='z-datebox-btn']]")
+	private List<WebElement> liste_champs_date;
 
-	public void checkForm() {
+	@FindBy(xpath = "//td[substring(@id,5)='2a-chdex']")
+	private WebElement bouton_accepter;
+	
+	
+
+	
+	
+	public void checkForm() throws InterruptedException {
 
 		// vérification des champs du formulaire
 		String liste_form = " Nom Modèle Code\nGénérer le code Date de début Echéance Client Calendrier";
@@ -55,23 +77,72 @@ public class PageNewProject {
 		// Présence du champ Nom
 		assertTrue(field_nom.isDisplayed());
 
-		// Renseigner le champ Nom
-		Outils.renseignerChamp(field_nom, "PROJET_TEST1");
+	
 
 		// Présence du champ Modele
 		assertTrue(field_modele.isDisplayed());
 
 		// Présence du champ Code avec une valeur par défaut
-		assertTrue(field_code.getAttribute("value").contains("ORDER00"));
+		assertTrue(field_code.getAttribute("value").contains("ORDER"));
 
 		// CheckBox générer code cochée
 		assertTrue(checkbox_generer.isSelected());
 
-		//Vérification de la date 
-		
+		// Vérification de la date 
 		Outils.isValidFormat(liste_field_date.get(0).getAttribute("value"));
-
+		
+	
+	}
+	
+	public void renseignerNom(String nom) {
+		// Renseigner le champ Nom
+		Outils.renseignerChamp(field_nom, nom);
+	}
+	
+	public void renseignerCode(String code) {
+		// Renseigner le champ Code
+		Outils.renseignerChamp(field_code, code);
+	}
+	
+	public void decocherCase() {
+		// Décocher la case
+		checkbox_generer.click();
+	}
+	
+	public void changerDateDebut(int i) throws Exception {
+		// Cliquer le 1er calendrier
+		Outils.renseignerChamp(liste_champs_date.get(2),datePlus(i));
+	
+	}
+	
+	public void changerDateEcheance(int i) throws Exception {
+		// Cliquer le 2eme calendrier
+		Outils.renseignerChamp(liste_champs_date.get(3),datePlus(i));
+	
+	}
+	
+	
+	public static String datePlus(int plus) throws Exception {
+		//Retourne la date du jour + le nombre de jours passés en paramètres
+		Calendar date = new GregorianCalendar();
+		String rdata;
+		Calendar end_date = date;
+		DateFormatSymbols dFR = new DateFormatSymbols(Locale.FRENCH);
+		String[] moisCourtsFR = dFR.getShortMonths();
+		//String datePlus;
+		end_date.add(Calendar.DAY_OF_MONTH, plus);
+		rdata =(end_date.get(Calendar.DAY_OF_MONTH)+" "+ (moisCourtsFR[end_date.get(Calendar.MONTH)]+" "+end_date.get(Calendar.YEAR)));
+		System.out.println("jdjfhf :"+rdata);
+		return rdata;
 	}
 
+	
+	public OngletWBS cliquerAccepter(WebDriver driver){
+		// Cliquer surle bouton accepter
+		bouton_accepter.click();
+		return PageFactory.initElements(driver, OngletWBS.class);
+	}
+	
+	
 	
 }
