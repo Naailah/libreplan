@@ -8,6 +8,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import Configuration.PageProfilsListe;
+import Couts.PageTypesHeures;
 import Projet.PageNewProject;
 import Ressources.PageListedecalendriers;
 
@@ -46,6 +47,14 @@ public abstract class PageBandeau {
 	@FindBy(xpath = "//a[contains(@href,'calendars.zul')]")
 	private WebElement lien_calendriers;
 	
+	// XPath de l'onglet "Coûts"
+	@FindBy (xpath="//button[contains(@id,'0-b')][@class='z-menu-btn']")
+	private WebElement bouton_couts;
+	
+	// XPath du lien "Types d'heures" dans l'onglet "Coûts"
+	@FindBy (xpath="//a[contains(@href,'typeofworkhours')]")
+	private WebElement lien_types_heures;
+	
 	
 	/**
 	 * Permet de faire un mouseover sur l'onglet "Configuration"
@@ -58,6 +67,13 @@ public abstract class PageBandeau {
 		return PageFactory.initElements(driver, PageProfilsListe.class);
 	}
 	
+	//aller sur l'onglet couts/types d'heures
+	public PageTypesHeures mouseoverCoutsTypes(WebDriver driver) {
+		Actions moCouts = new Actions(driver);
+		moCouts.moveToElement(bouton_couts).build().perform();
+		lien_types_heures.click();
+		return PageFactory.initElements(driver, PageTypesHeures.class);
+	}
 	
 	
 	// Méthode de cliquer sur "Ressources"

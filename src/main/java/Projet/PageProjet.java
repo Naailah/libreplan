@@ -9,6 +9,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import Couts.PageTypesHeures;
 import GR4.LibrePlan4.PageBandeau;
 
 
@@ -23,19 +24,11 @@ public class PageProjet extends  PageBandeau{
 	@FindBy (xpath="//table[@style='width:100%;height:30px;']")
 	private WebElement button_add_project;
 	
-
+	@FindBy (xpath="//table[substring(@id,5)='h4-box']")
+	private WebElement bouton_liste_projets;
 	
-	
-	
-
-	public void mouseoverCalendrier_Projet(WebDriver driver) {
-		Actions mo= new Actions(driver);
-		mo.moveToElement(bouton_calendrier).build().perform();
-		lien_projets.click();
-		
-	}
-	
-	
-	
-	
+	//Accéder à la liste des projets
+		public void clicListeProjet(WebDriver driver) {
+			bouton_liste_projets.click();
+		}
 }
