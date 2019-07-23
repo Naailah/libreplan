@@ -45,6 +45,11 @@ public class PageProfilsListe extends PageBandeau {
 	@FindBy (xpath="//tr[td/div/span[contains(.,'Nom du profil')]]//td//span[@title='Modifier']")
 	private WebElement icone_modifier_nomDuProfil;
 	
+	@FindBy (xpath="//div[@class='z-window-embedded-header'][text()='Profils Liste']")
+	private WebElement titre_profilsListe;
+	
+
+	
 	
 	public PageProfilsListe() {	
 		
@@ -107,11 +112,11 @@ public class PageProfilsListe extends PageBandeau {
 	public void verifMsgConfirmation() {
 		msgConfirmation.isDisplayed();
 		Outils.verificationTextWebElement("Profil \"Nom du profil\" enregistré", msgConfirmation);
-		Outils.verifierCouleur(msgConfirmation);
+		Outils.verifierCouleur(msgConfirmation, "#cceecc");
 	}
 	
-	public void verifAjoutProfil() {
-		Outils.verifTableau(" " + "Nom du profil", ligne_nomDuProfil);
+	public void verifAjoutProfil(String nom) {
+		Outils.verifTableau(" " + nom, ligne_nomDuProfil);
 	}
 	
 	public PageCreer_ModifierProfil cliquerModifNomDuProfil(WebDriver driver) {
@@ -120,5 +125,17 @@ public class PageProfilsListe extends PageBandeau {
 		return PageFactory.initElements(driver, PageCreer_ModifierProfil.class);
 	}
 	
+	public void verifTitreProfilsListe() {
+		titre_profilsListe.isDisplayed();
+		Outils.verificationTextWebElement("Profils Liste", titre_profilsListe);
+	}
 	
+	public void supprProfilsCrees(WebDriver driver, String nom) {
+		WebElement supprProfil = driver.findElement(By.xpath("//tr[td/div/span[contains(.," + nom + ")]]//td//span[@title='Supprimer']"));
+		if(supprProfil.isDisplayed()) {
+			supprProfil.click();
+		}
+	}
+	
+
 }

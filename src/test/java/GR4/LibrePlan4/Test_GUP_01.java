@@ -19,6 +19,9 @@ public class Test_GUP_01 extends Test_connexion {
 		PageProfilsListe pageProfilsListe = pageAccueil.mouseoverConfiguration(driver);
 //		driver.get("http://localhost:8090/libreplan/profiles/profiles.zul");
 		
+		//VERIFIER LE TITRE DE LA PAGE "PROFILS LISTE"
+		pageProfilsListe.verifTitreProfilsListe();
+		
 		//VERIFIER LA PRESENCE DES COLONNES "NOM DE PROFIL" ET "ACTIONS"
 		pageProfilsListe.verifColonnesNomActions();
 		
@@ -28,14 +31,21 @@ public class Test_GUP_01 extends Test_connexion {
 		//VERIFIER LA PRESENCE DU BOUTON "CREER"
 		pageProfilsListe.verifBoutonCreer();
 		
+//		//SUPPRIMER LES PROFILS CREES
+//		pageProfilsListe.supprProfilsCrees(driver, "Nom du profil");
+//		pageProfilsListe.supprProfilsCrees(driver, "Utilisateur test");
+		
 		//CLIQUER SUR LE BOUTON "CREER"
 		PageCreer_ModifierProfil pageCreer_ModifierProfil = pageProfilsListe.cliquerBoutonCreer(driver);
+		
+		//VERIFIER LE TITRE DE LA PAGE "CREER PROFIL"
+		pageCreer_ModifierProfil.verifTitreCreerModifProfil("Créer Profil");
 		
 		//VERIFIER LA PRESENCE DES ELEMENTS DE L'ONGLET "DONNEES DE PROFIL"
 		pageCreer_ModifierProfil.verifDonneesDeProfil();
 		
 		//SAISIR UNE VALEUR DANS LE CHAMPS "NOM"
-		pageCreer_ModifierProfil.saisirNomProfil();
+		pageCreer_ModifierProfil.saisirNomProfil("Nom du profil");
 		
 		//CHOISIR LE RÔLE "LIRE TOUS LES PROJETS" DANS LE MENU DEROULANT
 		pageCreer_ModifierProfil.selectionnerRole(driver, "Lire");
@@ -97,16 +107,63 @@ public class Test_GUP_01 extends Test_connexion {
 		//CLIQUER SUR LE BOUTON "ENREGISTRER"
 		pageCreer_ModifierProfil.clicEnregister(driver);
 		
+		//VERIFIER LE TITRE DE LA PAGE "PROFILS LISTE"
+		pageProfilsListe.verifTitreProfilsListe();
+		
 		//VERIFIER LE MESSAGE DE CONFIRMATION D'ENREGISTREMENT
 		pageProfilsListe.verifMsgConfirmation();
 		
 		//VERIFIER L'AJOUT DU PROFIL
-		pageProfilsListe.verifAjoutProfil();
+		pageProfilsListe.verifAjoutProfil("Nom du profil");
 		
 		//CLIQUER SUR L'ICÔNE "MODIFIER"
 		pageProfilsListe.cliquerModifNomDuProfil(driver);
 		
+		//VERIFIER LE TITRE DE LA PAGE "MODIFIER PROFIL"
+		pageCreer_ModifierProfil.verifTitreCreerModifProfil("Modifier Profil: Nom du profil");
 		
+		//VERIFIER QU'IL N'Y A AUCUN RÔLE D'ATTRIBUER AU PROFIL
+		pageCreer_ModifierProfil.verifTableauVide();
+		
+		//CHOISIR LE RÔLE "FEUILLE DE TEMPS" DANS LE MENU DEROULANT
+		pageCreer_ModifierProfil.selectionnerRole(driver, "Feuille");
+				
+		//CLIQUER SUR LE BOUTON "AJOUTER UN RÔLE"
+		pageCreer_ModifierProfil.cliquerAjouterRole();
+				
+		//CHOISIR LE RÔLE "CRITERE" DANS LE MENU DEROULANT
+		pageCreer_ModifierProfil.selectionnerRole(driver, "Critère");
+				
+		//CLIQUER SUR LE BOUTON "AJOUTER UN RÔLE"
+		pageCreer_ModifierProfil.cliquerAjouterRole();
+				
+		//CHOISIR LE RÔLE "CALENDRIER" DANS LE MENU DEROULANT
+		pageCreer_ModifierProfil.selectionnerRole(driver, "Calendrier");
+				
+		//CLIQUER SUR LE BOUTON "AJOUTER UN RÔLE"
+		pageCreer_ModifierProfil.cliquerAjouterRole();
+		
+		//VERIFIER L'AJOUT DES RÔLES "FEUILLE DE TEMPS", "CALENDRIER" ET "CRITERE"
+		pageCreer_ModifierProfil.verifAjout3roles();
+		
+		//MODIFIER LE NOM DU PROFIL
+		pageCreer_ModifierProfil.saisirNomProfil("Utilisateur test");
+		
+		//CLIQUER SUR LE BOUTON "ENREGISTRER"
+		pageCreer_ModifierProfil.clicEnregister(driver);
+		
+		//VERIFIER LE TITRE DE LA PAGE "PROFILS LISTE"
+		pageProfilsListe.verifTitreProfilsListe();
+		
+		//VERIFIER LE MESSAGE DE CONFIRMATION D'ENREGISTREMENT
+		pageProfilsListe.verifMsgConfirmation();
+				
+		//VERIFIER L'AJOUT DU PROFIL
+		pageProfilsListe.verifAjoutProfil("Nom du profil");
+		
+		//SUPPRIMER LES PROFILS CREES
+		pageProfilsListe.supprProfilsCrees(driver, "Nom du profil");
+		pageProfilsListe.supprProfilsCrees(driver, "Utilisateur test");
 	}
 	
 }

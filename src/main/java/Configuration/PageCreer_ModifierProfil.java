@@ -94,8 +94,11 @@ public class PageCreer_ModifierProfil extends PageBandeau{
 	@FindBy (xpath="//fieldset//span[@title='Supprimer'][@class='icono z-button']")
 	private List<WebElement> icones_suppr;
 	
+	@FindBy (xpath="//td[@class='z-caption-l'][@align='left']")
+	private WebElement titre_CreerModifierProfil;
 
-	
+	@FindBy (xpath="//fieldset//tbody[@class='z-grid-empty-body'][@style='']")
+	private WebElement tableauVide;
 	
 	public PageCreer_ModifierProfil() {
 		
@@ -124,11 +127,12 @@ public class PageCreer_ModifierProfil extends PageBandeau{
 		Outils.verificationTextWebElement("Annuler", bouton_annuler);
 	}
 	
-	public void saisirNomProfil() {
-		Outils.renseignerChamp(chmps_nom, "Nom du profil");
+	public void saisirNomProfil(String nom) {
+		Outils.renseignerChamp(chmps_nom, nom);
 	}
 	
 	public void selectionnerRole(WebDriver driver, String role) throws Exception {
+		Thread.sleep(500);
 		Outils.selectionnerOption_pageCreerProfil(driver, role, bouton_flecheMenuDeroulant);
 	}
 	
@@ -165,7 +169,8 @@ public class PageCreer_ModifierProfil extends PageBandeau{
 		Outils.verifTailleListe(liste_lignesTableau, 4);
 	}
 	
-	public void supprRoleCritere() {
+	public void supprRoleCritere() throws Exception {
+		Thread.sleep(500);
 		icone_supprCritere.isDisplayed();
 		icone_supprCritere.click();
 	}
@@ -191,5 +196,12 @@ public class PageCreer_ModifierProfil extends PageBandeau{
 		return PageFactory.initElements(driver, PageProfilsListe.class);
 	}
 
+	public void verifTitreCreerModifProfil(String modifOuCreer) {
+		titre_CreerModifierProfil.isDisplayed();
+		Outils.verificationTextWebElement(modifOuCreer, titre_CreerModifierProfil);
+	}
 	
+	public void verifTableauVide() {
+		tableauVide.isDisplayed();
+	}
 }

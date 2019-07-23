@@ -237,7 +237,7 @@ public class Outils {
 			}
 		}
 		
-		public static void verifierCouleur(WebElement msgBox) {
+		public static void verifierCouleur(WebElement msgBox, String couleurHexminuscule) {
 			System.out.println(msgBox.getText());
 			String rgbCode = msgBox.getCssValue("Background").substring(0, 18);
 			System.out.println(rgbCode);
@@ -248,7 +248,7 @@ public class Outils {
 			System.out.println("r: " + r + "g: " + g + "b: " + b);
 			String hex = "#" + Integer.toHexString(r) + Integer.toHexString(g) + Integer.toHexString(b);
 			System.out.println(hex);
-			assertTrue("[FAIL] Pas la bonne couleur", "#cceecc".equals(hex));
+			assertTrue("[FAIL] Pas la bonne couleur", couleurHexminuscule.equals(hex));
 		}
 	
 }
