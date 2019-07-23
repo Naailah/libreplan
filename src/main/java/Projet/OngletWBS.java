@@ -4,6 +4,7 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.*;
 import java.util.List;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -115,10 +116,11 @@ public class OngletWBS {
 		assertTrue(bouton_annuler_popup.isDisplayed());
 	}
 	
-	public void cliquerBoutonAnnulerPopup() {
+	public void cliquerBoutonAnnulerPopup(WebDriver driver) {
 
 		// Cliquer le bouton annuler popup
 		bouton_annuler_popup.click();
+		//WebElement popup2 = driver.findElement(By)
 		//assertFalse(popup.isDisplayed());
 		
 	}

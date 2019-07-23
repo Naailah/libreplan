@@ -9,8 +9,10 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import GR4.LibrePlan4.PageBandeau;
 
-public class PageProjet {
+
+public class PageProjet extends  PageBandeau{
 
 	@FindBy (xpath="//button[contains(.,'Calendrier')]")
 	private WebElement bouton_calendrier;
@@ -33,13 +35,7 @@ public class PageProjet {
 		
 	}
 	
-	public PageNewProject addProject(WebDriver driver) {
-		Actions mo= new Actions(driver);
-		mo.moveToElement(driver.findElement(By.xpath("//table[@style='width:100%;height:30px;']//img"))).click().build().perform();
-		
-		return  PageFactory.initElements(driver, PageNewProject.class);
-		
-	}
+	
 	
 	
 }

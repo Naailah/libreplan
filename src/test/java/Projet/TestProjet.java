@@ -51,7 +51,7 @@ public class TestProjet extends Test_connexion {
 		onglet.cliquerBoutonAnnulerEdition(driver);
 		
 		//Cliquer sur le bouton annuler de la popup
-		onglet.cliquerBoutonAnnulerPopup();
+		onglet.cliquerBoutonAnnulerPopup(driver);
 		
 		// Vérifier la présence du menu Detail du projet
 		//onglet.verifierBoutonDetail();

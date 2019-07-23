@@ -8,6 +8,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import Configuration.PageProfilsListe;
+import Projet.PageNewProject;
 import Ressources.PageListedecalendriers;
 
 public abstract class PageBandeau {
@@ -87,4 +88,13 @@ public abstract class PageBandeau {
 		onglet_ressources.click();
 		return PageFactory.initElements(driver, PageAccueil.class);
 	}*/
+	
+	// Créer un nouveau projet
+	public PageNewProject addProject(WebDriver driver) {
+		Actions mo= new Actions(driver);
+		mo.moveToElement(driver.findElement(By.xpath("//table[@style='width:100%;height:30px;']//img"))).click().build().perform();
+		
+		return  PageFactory.initElements(driver, PageNewProject.class);
+		
+	}
 }
