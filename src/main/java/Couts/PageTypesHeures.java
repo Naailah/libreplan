@@ -3,8 +3,6 @@ package Couts;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -178,7 +176,7 @@ public class PageTypesHeures extends PageBandeau{
 		champ_code.clear();
 		bouton_enregistrer.click();
 		//verif couleur message d'erreur
-		WebElement msg_erreur_couleur1 = driver.findElement(By.xpath("//div[@class='z-errbox-center']/../../../.."));
+	//	WebElement msg_erreur_couleur1 = driver.findElement(By.xpath("//div[@class='z-errbox-center']/../../../.."));
 		//Outils.verifierCouleur(msg_erreur_couleur, "#fdf2e7");
 		//verif message erreur
 		Thread.sleep(1000);
