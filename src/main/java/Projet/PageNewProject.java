@@ -34,10 +34,14 @@ public class PageNewProject {
 	@FindBy(xpath = "//div[@class='z-window-modal-cnt-noborder']/descendant::table[2]//tr[not(contains(@id,'faker'))][contains(@class,'z-row')]")
 	private List<WebElement> liste_nom_form;
 
+<<<<<<< HEAD
 	@FindBy(xpath = "//div[substring(@id,5)='z4-cell']/input")
 	private WebElement field_nom2;
 	
 	@FindBy(xpath = "//input[substring(@id,5)='p7']")
+=======
+	@FindBy(xpath = "//input[@class='z-textbox z-textbox-text-invalid']")
+>>>>>>> d7bc929cbcdb984093a4da436bfaeb8c1716fd21
 	private WebElement field_nom;
 
 	@FindBy(xpath = "//input[substring(@id,5)='v7-real']")
