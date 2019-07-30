@@ -11,11 +11,10 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-<<<<<<< HEAD
 import GR4.LibrePlan4.Outils;
-=======
+
 import Couts.PageTypesHeures;
->>>>>>> d7bc929cbcdb984093a4da436bfaeb8c1716fd21
+
 import GR4.LibrePlan4.PageBandeau;
 import static org.junit.Assert.*;
 
@@ -32,7 +31,7 @@ public class PageProjet extends  PageBandeau{
 	
 	@FindBy (xpath="//table[substring(@id,5)='h4-box']")
 	private WebElement bouton_liste_projets;
-<<<<<<< HEAD
+
 	
 	@FindBy (xpath="//td[.='Planification de projet'][@align='left']")
 	private WebElement bouton_planif_projets;
@@ -96,11 +95,4 @@ public class PageProjet extends  PageBandeau{
 	
 	
 }
-=======
-	
-	//Accéder à la liste des projets
-		public void clicListeProjet(WebDriver driver) {
-			bouton_liste_projets.click();
-		}
-}
->>>>>>> d7bc929cbcdb984093a4da436bfaeb8c1716fd21
+
