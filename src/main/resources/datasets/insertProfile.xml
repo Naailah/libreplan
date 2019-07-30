@@ -1,4 +1,4 @@
 <dataset>
-	<profile_table profile_name="Nom du profil test"/>
-	<profile_roles role="Role test"/>
+	<profile_table profile_name="Nom du profil test" />
+	<profile_roles role="Role test" />
 </dataset>

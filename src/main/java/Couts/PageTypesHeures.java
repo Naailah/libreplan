@@ -203,7 +203,7 @@ public class PageTypesHeures extends PageBandeau{
 		//verif couleur message validation
 		Outils.verifierCouleur(message_validation, "#cceecc");
 		//creation liste pour verif tableau
-		List<WebElement>liste_tableau = new ArrayList<>();
+		List<WebElement>liste_tableau = new ArrayList<WebElement>();
 		liste_tableau.add(tableau_case_1);
 		liste_tableau.add(tableau_case_2);
 		liste_tableau.add(tableau_case_3);
