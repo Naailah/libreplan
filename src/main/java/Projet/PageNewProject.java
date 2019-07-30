@@ -29,9 +29,14 @@ import GR4.LibrePlan4.Outils;
 import Ressources.PageListedecalendriers;
 
 public class PageNewProject {
+	
+	
 	@FindBy(xpath = "//div[@class='z-window-modal-cnt-noborder']/descendant::table[2]//tr[not(contains(@id,'faker'))][contains(@class,'z-row')]")
 	private List<WebElement> liste_nom_form;
 
+	@FindBy(xpath = "//div[substring(@id,5)='z4-cell']/input")
+	private WebElement field_nom2;
+	
 	@FindBy(xpath = "//input[substring(@id,5)='p7']")
 	private WebElement field_nom;
 
@@ -62,7 +67,11 @@ public class PageNewProject {
 	@FindBy(xpath = "//td[substring(@id,5)='2a-chdex']")
 	private WebElement bouton_accepter;
 	
+	@FindBy (xpath="//td[@class='z-button-cm'][contains(.,'Accepter')]")
+	private WebElement bouton_accepter2;
 	
+	@FindBy (xpath="//span[contains(.,'WBS (tâches)')]")
+	private WebElement page_WBS;
 
 	
 	
@@ -99,6 +108,13 @@ public class PageNewProject {
 		Outils.renseignerChamp(field_nom, nom);
 	}
 	
+	public void renseignerNom2(String nom) {
+		// Renseigner le champ Nom
+		Outils.renseignerChamp(field_nom2, nom);
+	}
+	public void cliquerAccepter() {
+		bouton_accepter2.click();
+	}
 	public void renseignerCode(String code) {
 		// Renseigner le champ Code
 		Outils.renseignerChamp(field_code, code);
@@ -111,30 +127,16 @@ public class PageNewProject {
 	
 	public void changerDateDebut(int i) throws Exception {
 		// Cliquer le 1er calendrier
-		Outils.renseignerChamp(liste_champs_date.get(2),datePlus(i));
+		Outils.renseignerChamp(liste_champs_date.get(2),Outils.datePlus(i));
 	
 	}
 	
 	public void changerDateEcheance(int i) throws Exception {
 		// Cliquer le 2eme calendrier
-		Outils.renseignerChamp(liste_champs_date.get(3),datePlus(i));
+		Outils.renseignerChamp(liste_champs_date.get(3),Outils.datePlus(i));
 	
 	}
 	
-	
-	public static String datePlus(int plus) throws Exception {
-		//Retourne la date du jour + le nombre de jours passés en paramètres
-		Calendar date = new GregorianCalendar();
-		String rdata;
-		Calendar end_date = date;
-		DateFormatSymbols dFR = new DateFormatSymbols(Locale.FRENCH);
-		String[] moisCourtsFR = dFR.getShortMonths();
-		//String datePlus;
-		end_date.add(Calendar.DAY_OF_MONTH, plus);
-		rdata =(end_date.get(Calendar.DAY_OF_MONTH)+" "+ (moisCourtsFR[end_date.get(Calendar.MONTH)]+" "+end_date.get(Calendar.YEAR)));
-		System.out.println("jdjfhf :"+rdata);
-		return rdata;
-	}
 
 	
 	public OngletWBS cliquerAccepter(WebDriver driver){

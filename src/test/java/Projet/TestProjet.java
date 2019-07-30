@@ -39,7 +39,7 @@ public class TestProjet extends Test_connexion {
 		onglet.verifierMenuVertical();
 		
 		//Vérifier les onglets - menu horizontal
-		onglet.verifierOnglets();
+		onglet.verifierMenuHorizontal();
 		
 		// Vérifier Bouton d'enregistrement
 		onglet.verifierBoutonSave(driver);	
@@ -54,10 +54,28 @@ public class TestProjet extends Test_connexion {
 		onglet.cliquerBoutonAnnulerPopup(driver);
 		
 		// Vérifier la présence du menu Detail du projet
-		//onglet.verifierBoutonDetail();
+		onglet.verifierBoutonDetail();
 		
 		// Vérifier la présence de l'onglet WBS
-		//onglet.verifierOngletWBS();
+		onglet.verifierOngletWBS();
+		
+		// Cliquer bouton annuler + vérifications
+		onglet.cliquerBoutonAnnulerEdition(driver);
+		
+		// Cliquer bouton OK
+		 page_projet = onglet.cliquerBoutonOKPopup(driver);
+		
+		// Vérifier la création du projet 
+		PageListeProjets page_liste_projets = page_projet.mouseoverCalendrier_Projet(driver);
+		page_liste_projets.verifierProjet("PROJET_TEST1");
+		
+		//Vérifier les détails du projet
+		String datePlus5 = Outils.datePlus(5);
+		String datePlus15 = Outils.datePlus(15);
+		page_liste_projets.verifierDetailsProjet(" PROJET_TEST1 PRJTEST001 "+datePlus5+" "+datePlus15+"  0 € 0 PRE-VENTES ");
+		
+		//Vérifier les icones
+		page_liste_projets.verifierIcones();
 	}
 	
 }

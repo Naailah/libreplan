@@ -9,6 +9,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 import GR4.LibrePlan4.Outils;
 
@@ -29,23 +30,23 @@ public class OngletWBS {
 	@FindBy(xpath = "//img[@src='/libreplan/common/img/ico_save.png']")
 	private WebElement bouton_save;
 
-	@FindBy(xpath = "//span[substring(@id,5)='r40']")
+	@FindBy(xpath = "//span[@class='planner-icon z-button'][@title='Enregistrer le projet']")
 	private WebElement info_bulle_save;
 
 	@FindBy(xpath = "//img[@src='/libreplan/common/img/ico_back.png']")
 	private WebElement bouton_annuler;
 
-	@FindBy(xpath = "//span[substring(@id,5)='s40']")
+	@FindBy(xpath = "//span[@class='planner-icon z-button'][@title=\"Annuler l'édition\"]")
 	private WebElement info_bulle_annuler;
 
 	
-	@FindBy(xpath = "//span[substring(@id,5)='v4']")
+	@FindBy(xpath = "//div[@class='z-messagebox']/span")
 	private WebElement popup_text;
 	
-	@FindBy(xpath = "//td[.='OK'][@class='z-button-cm']")
+	@FindBy(xpath = "//span[@class='z-messagebox-btn z-button']//td[.='OK'][@class='z-button-cm']")
 	private WebElement bouton_ok_popup;
 	
-	@FindBy(xpath = "//table[substring(@id,6)='4-real']//td[.='Annuler'][@class='z-button-cm']")
+	@FindBy(xpath = "//span[@class='z-messagebox-btn z-button']//td[.='Annuler'][@class='z-button-cm']")
 	private WebElement bouton_annuler_popup;
 	
 	@FindBy(xpath = "//div[@class='z-window-modal-cr']")
@@ -65,7 +66,7 @@ public class OngletWBS {
 		assertTrue(onglet_WBS.isDisplayed());
 	}
 
-	public void verifierOnglets() {
+	public void verifierMenuHorizontal() {
 		String onglets = " WBS (tâches) Données générales Coût Avancement Libellés Exigence de critère Matériels Formulaires qualité des tâches Autorisation";
 		Outils.verifTableau(onglets, liste_onglets);
 
@@ -111,17 +112,26 @@ public class OngletWBS {
 
 		// Cliquer le bouton annuler edition
 		bouton_annuler.click();
+		Thread.sleep(700);
 		assertEquals("Les modifications non enregistrées seront perdues. Êtes-vous sûr ?",popup_text.getText());
 		assertTrue(bouton_ok_popup.isDisplayed());
 		assertTrue(bouton_annuler_popup.isDisplayed());
 	}
 	
-	public void cliquerBoutonAnnulerPopup(WebDriver driver) {
+	public void cliquerBoutonAnnulerPopup(WebDriver driver) throws InterruptedException {
 
 		// Cliquer le bouton annuler popup
 		bouton_annuler_popup.click();
-		//WebElement popup2 = driver.findElement(By)
-		//assertFalse(popup.isDisplayed());
+		/*WebElement popup2 = driver.findElement(By.xpath("//span[@class='z-messagebox-btn z-button']//td[.='Annuler'][@class='z-button-cm']"));
+		Thread.sleep(700);
+		assertFalse(popup2.isDisplayed());*/
 		
+	}
+	
+	public PageProjet cliquerBoutonOKPopup(WebDriver driver) throws InterruptedException {
+
+		// Cliquer le bouton annuler popup
+		bouton_ok_popup.click();
+		return PageFactory.initElements(driver, PageProjet.class);
 	}
 }

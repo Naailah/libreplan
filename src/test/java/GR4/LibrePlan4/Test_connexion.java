@@ -27,15 +27,6 @@ public abstract class Test_connexion {
 		driver.get(url);
 		pageConnexion.seConnecter(driver, "admin", "admin");
 	}
-//	@Test
-//	public void Connexion() {
-
-//	}
-//	@After
-//	public void tearDown() {
-//		driver.close();
-//	}
-
 
 	
 }
